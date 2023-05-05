@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+@startuml
+
+interface Doclet
+interface Reporter
+interface Locale
+interface Doclet.Option
+interface SourceVersion
+interface Element
+interface DocletEnvironment
+
+Doclet -- Doclet.Option : imprique >
+Doclet -- DocletEnvironment : : imprique >
+Doclet -- Locale
+DocletEnvironment -- Element : utilise >
+
+DocletEnvironment -- Reporter : u >
+DocletEnvironment -- SourceVersion :  >
+
+class ToolProvider
+
+
+ToolProvider -- Doclet
+
+
+@enduml
+
