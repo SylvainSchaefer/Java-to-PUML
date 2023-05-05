@@ -11,7 +11,7 @@ participant "Main" as main
 participant "ToolProvider.class" as class
 participant "toolProvider: ToolProvider" as toolprovider
 participant "FirstDoclet" as doclet
-participant "Start" as start
+
 
 
 main -> class++: findFirts("javadoc").get()
@@ -19,7 +19,8 @@ class -->> toolprovider**: <<Create>>(ToolProvider())
 return toolProvider
 
 main -> toolprovider: run(System.out, System.err, args)
-toolprovider -->> firstDoclet**: <<Create>>(FirstDoclet())
+toolprovider -->> doclet**: <<Create>>(FirstDoclet())
+toolprovider -> doclet++: run()
 
 
 
