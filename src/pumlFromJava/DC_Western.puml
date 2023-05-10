@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+Class Boisson
+Class Brigand
+Class CasDeTestStandard
+Class Cowboy
+Class Dame
+Enum Genre
+Class Histoire4
+Interface HorsLaLoi
+Class Narrateur
+Interface Nommable
+Class Personnage
+Class Ripou
+Class Substantif
+Class test
+@enduml
+

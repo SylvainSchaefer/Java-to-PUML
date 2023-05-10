@@ -6,14 +6,15 @@ import jdk.javadoc.doclet.Reporter;
 
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
 public class PumlDoclet implements Doclet {
-    String chemin = "C:\\Users\\sylva\\Documents\\Cours\\IUT\\P21\\p21_projet\\src\\pumlFromJava\\";
-    String nom = "DC";
+    OptionOut optionOut = new OptionOut();
+    OptionD optionD = new OptionD();
     @Override
     public void init(Locale locale, Reporter reporter) {  }
 
@@ -30,8 +31,6 @@ public class PumlDoclet implements Doclet {
     public Set<? extends Option> getSupportedOptions() {
         // This doclet does not support any options.
         Set<Option> options = new HashSet<>();
-        OptionOut optionOut = new OptionOut();
-        OptionD optionD = new OptionD();
 
         options.add(optionD);
         options.add(optionOut);
@@ -57,10 +56,10 @@ public class PumlDoclet implements Doclet {
         System.out.println(this.getName());
         System.out.println(environment.getSpecifiedElements());
         System.out.println(environment.getIncludedElements());
-        ArrayList<String> classes = new ArrayList<>();
-        for (Element element : environment.getSpecifiedElements())
+        ArrayList<Element> classes = new ArrayList<>();
+        for (Element element : environment.getIncludedElements())
         {
-            classes.add(String.valueOf(element.getSimpleName()));
+            classes.add(element);
         }
         try
         {
@@ -73,42 +72,46 @@ public class PumlDoclet implements Doclet {
         return true;
     }
 
-    private void dumpElement(Element element)
-    {
-        System.out.print("---- ");
-        System.out.println("element: " + element);
-        System.out.println("kind: " + element.getKind());
-        System.out.println("simpleName: " + element.getSimpleName());
-        System.out.println("enclosingElement: " + element.getEnclosingElement());
-        System.out.println("enclosedElement: " + element.getEnclosedElements());
-        System.out.println("modifiers: " + element.getModifiers());
-        System.out.println();
-    }
 
 
-    private void creationUml(ArrayList<String> classes) throws IOException
-    {
-        File fichier = new File(chemin +  nom + ".puml");
-        if(fichier.exists())
-        {
+    private void creationUml(ArrayList<Element> classes) throws IOException {
+
+
+        String chemin = optionD.getChemin();
+        String nom = optionOut.getNomFichier();
+        File fichier = new File(chemin + "\\" + nom + ".puml");
+        if (fichier.exists()) {
             fichier.delete();
         }
         fichier.createNewFile();
 
-        try
-        {
+        try {
             PrintWriter writer = new PrintWriter(fichier);
-            for (String s:classes)
-            {
-                writer.println("Class " + s);
+            writer.println("@startuml\n" +
+                    "'https://plantuml.com/class-diagram\n" +
+                    "skinparam style strictuml\n" +
+                    "skinparam classAttributeIconSize 0\n" +
+                    "skinparam classFontStyle Bold\n" +
+                    "hide empty members\n");
+            for (Element e : classes) {
+                if(e.getKind() == ElementKind.CLASS)
+                {
+                    writer.println("Class " + e.getSimpleName());
+                }
+                else if(e.getKind() == ElementKind.INTERFACE) {
+                    writer.println("Interface " + e.getSimpleName());
+                }
+                else if (e.getKind() == ElementKind.ENUM)
+                {
+                    writer.println("Enum " + e.getSimpleName());
+                }
             }
+            writer.println("@enduml\n");
             writer.close();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
 }
 
