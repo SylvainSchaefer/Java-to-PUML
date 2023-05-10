@@ -1,0 +1,56 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+@startuml
+class FirstDoclet implements Doclet
+{
+    + init(locale: Locale, reporter: Reporter)
+    + getName() : String
+    + getSupportedOptions() : Option[*]
+    + getSupportedSourceVersion() : SourceVersion
+    + run(environment: DocletEnvironment) : Boolean
+    - dumpElement(element: Element)
+}
+
+interface Doclet
+{
+    + init(locale: Locale, reporter: Reporter) : {abstract}
+        + getName() : String {abstract}
+        + getSupportedOptions() : Option[*] {abstract}
+        + getSupportedSourceVersion() : SourceVersion{abstract}
+        + run(environment: DocletEnvironment) : Boolean{abstract}
+
+}
+
+
+
+class Option
+
+enum SourceVersion
+{
+  +latest() : SourceVersion {static}
+}
+
+interface DocletEnvironment
+{
+   +getSpecifiedElements() : Element[*]
+   +getIncludedElements() : Element[*]
+   +getSpecifiedElements() : Element[*]
+}
+
+interface Element
+{
+    +getKind() : ElementKind
+    +getSimpleName() : Name
+    +getEnclosedElements() : Element [*]
+    +getModifiers() :  Element [*]
+}
+
+FirstDoclet ..> Element : <<use>>
+FirstDoclet ..> DocletEnvironment : <<use>>
+FirstDoclet ..> SourceVersion : <<use>>
+FirstDoclet ..> Option : <<use>>
+
+
+@enduml
+
+@enduml
