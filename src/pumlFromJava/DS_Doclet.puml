@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam style strictuml
+
+legend top
+Diagramme de séquence appel Doclet
+end legend
+
+
+participant "Main" as main
+participant "ToolProvider.class" as class
+participant "toolProvider: ToolProvider" as toolprovider
+participant "FirstDoclet" as doclet
+
+
+
+main -> class++: findFirts("javadoc").get()
+class -->> toolprovider**: <<Create>>(ToolProvider())
+return toolProvider
+
+main -> toolprovider: run(System.out, System.err, args)
+toolprovider -->> doclet**: <<Create>>(FirstDoclet())
+toolprovider -> doclet++: run()
+
+
+
+
+@enduml
