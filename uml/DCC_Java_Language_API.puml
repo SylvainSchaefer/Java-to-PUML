@@ -1,0 +1,144 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+interface Element
+{
+  +asType(): TypeMirror
+  +getKind(): ElementKind
+  +getEnclosingElement(): Element
+  +getEnclosedElement(): Element[*]
+  +getModifiers() : Modifier[*]
+  +getSimpleName() : Name
+}
+
+
+interface TypeElement extends Element
+{
+    +getInterfaces(): TypeMirror[*]
+    +getNestingKind(): NestingKind
+    +getQualifiedName(): Name
+    +getSuperclass(): TypeMirror
+    +getTypeParameters(): TypeParameterElement[*]
+    +getRecordComponents(): RecordComponentElement[*]
+    +getPermittedSubclasses(): TypeMirror[*]
+}
+
+interface ExecutableElement extends Element
+{
+    +getTypeParameters(): TypeParameterElement[*]
+    +getReturnType(): TypeMirror
+    +getParameters(): VariableElement[*]
+    +getReceiverType(): TypeMirror
+}
+
+
+interface ModuleElement extends Element
+{
+    +getQualifiedName(): Name
+    +getEnclosedElements(): Element[*]
+}
+
+interface PackageElement extends Element
+{
+    +getQualifiedName(): Name
+}
+
+interface Parameterizable extends Element
+{
+    +getTypeParameters():  TypeParameterElement[*]
+}
+
+
+interface QualifiedNameable extends Element
+{
+}
+
+
+interface RecordComponentElement extends Element
+{
+    +getAccessor(): ExecutableElement
+}
+
+
+interface TypeParameterElement extends Element
+{
+    +getGenericElement(): Element
+    +getBounds(): TypeMirror[*]
+}
+
+interface VariableElement extends Element
+{
+}
+
+
+enum ElementKind extends Element
+{
+   BINDING_VARIABLE
+   CLASS
+   CONSTRUCTOR
+   ENUM
+   ENUM_CONSTANT
+   FIELD
+   INSTANCE_INIT
+   INTERFACE
+   LOCAL_VARIABLE
+   METHOD
+   MODULE
+   PACKAGE
+   PARAMETER
+   RECORD
+   RECORD_COMPONENT
+   RESOURCE_VARIABLE
+   STATIC_INIT
+   TYPE_PARAMETER
+}
+
+
+enum Modifier extends Element
+{
+    ABSTRACT
+    DEFAULT
+    FINAL
+    NATIVE
+    NON_SEALED
+    PRIVATE
+    PROTECTED
+    PUBLIC
+    SEALED
+    STATIC
+    STRICTFP
+    SYNCHRONIZED
+    TRANSIENT
+    VOLATILE
+}
+
+
+enum NestingKind extends Element
+{
+    ANONYMOUS
+    LOCAL
+    MEMBER
+    TOP_LEVEL
+}
+
+
+interface ElementVisitor extends Element
+{
+    +visit(e: Element, p: P): R
+    +visit(e: Element): R
+    +visitPackage(e: PackageElement, p: P): R
+    +visitType(e: TypeElement, p: P): R
+    +visitVariable(e: VariableElement, p: P): R
+    +visitExecutable(e: ExecutableElement, p: P): R
+    +visitTypeParameter(e: TypeParameterElement, p: P): R
+    +visitUnknown(e: Element, p: P): R
+    +visitModule(e: ModuleElement, p: P): R
+    +visitRecordComponentCopy(e: RecordComponentElement, p: P): R
+}
+
+@enduml
