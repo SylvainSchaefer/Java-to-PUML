@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-@startuml
+
 class FirstDoclet implements Doclet
 {
     + init(locale: Locale, reporter: Reporter)

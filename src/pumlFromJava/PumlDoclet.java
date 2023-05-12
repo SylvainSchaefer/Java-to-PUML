@@ -96,7 +96,11 @@ public class PumlDoclet implements Doclet {
             for (Element e : classes) {
                 if(e.getKind() == ElementKind.CLASS)
                 {
-                    writer.println("Class " + e.getSimpleName());
+                    ClassPUML c = new ClassPUML(e);
+                    writer.println(c.getNomClasse());
+                    writer.println(c.getField());
+                    writer.println(c.getEnd());
+
                 }
                 else if(e.getKind() == ElementKind.INTERFACE) {
                     writer.println("Interface " + e.getSimpleName());

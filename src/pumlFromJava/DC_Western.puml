@@ -5,19 +5,56 @@ skinparam classAttributeIconSize 0
 skinparam classFontStyle Bold
 hide empty members
 
-Class Boisson
-Class Brigand
-Class CasDeTestStandard
-Class Cowboy
-Class Dame
+Class Boisson{
+nom
+genre
+
+}
+Class Brigand{
+recompense
+look
+captureur
+libre
+Dames
+
+}
+Class Cowboy{
+somme
+lstBrigand
+damLibre
+
+}
+Class Dame{
+Libre
+sauveur
+escroc
+
+}
 Enum Genre
-Class Histoire4
+Class Histoire3{
+
+}
+Class Histoire4{
+
+}
 Interface HorsLaLoi
-Class Narrateur
-Interface Nommable
-Class Personnage
-Class Ripou
-Class Substantif
-Class test
+Class Narrateur{
+
+}
+Class Personnage{
+nom
+prefere
+
+}
+Class Ripou{
+recompense
+somme
+lstBrigand
+Dames
+look
+captureur
+libre
+
+}
 @enduml
 
