@@ -103,11 +103,17 @@ public class PumlDoclet implements Doclet {
 
                 }
                 else if(e.getKind() == ElementKind.INTERFACE) {
-                    writer.println("Interface " + e.getSimpleName());
+
+                    InterfacePUML i = new InterfacePUML(e);
+                    writer.println(i.getNameI());
+                    writer.println(i.getEnd());
                 }
                 else if (e.getKind() == ElementKind.ENUM)
                 {
-                    writer.println("Enum " + e.getSimpleName());
+                    EnumPUML en = new EnumPUML(e);
+                    writer.println(en.getNameE());
+                    writer.println(en.getConst());
+                    writer.println(en.getEnd());
                 }
             }
             writer.println("@enduml\n");

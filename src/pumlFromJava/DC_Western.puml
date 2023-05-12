@@ -6,54 +6,41 @@ skinparam classFontStyle Bold
 hide empty members
 
 Class Boisson{
-nom
-genre
 
 }
 Class Brigand{
 recompense
-look
-captureur
-libre
-Dames
 
 }
 Class Cowboy{
 somme
-lstBrigand
-damLibre
 
 }
 Class Dame{
-Libre
-sauveur
-escroc
 
 }
-Enum Genre
+Enum Genre<<enum>> {
+MASCULIN
+FEMININ
+
+}
 Class Histoire3{
 
 }
 Class Histoire4{
 
 }
-Interface HorsLaLoi
+Interface HorsLaLoi<<interface>> {
+}
 Class Narrateur{
 
 }
 Class Personnage{
-nom
-prefere
 
 }
 Class Ripou{
 recompense
 somme
-lstBrigand
-Dames
-look
-captureur
-libre
 
 }
 @enduml
