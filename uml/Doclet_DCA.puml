@@ -1,29 +1,42 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
 
-@startuml
+
+
+class FirstDoclet implements Doclet
+{
+}
 
 interface Doclet
-interface Reporter
-interface Locale
-interface Doclet.Option
-interface SourceVersion
-interface Element
+{
+}
+
+
+
+class Option
+
+enum SourceVersion
+{
+}
+
 interface DocletEnvironment
+{
+}
 
-Doclet -- Doclet.Option : imprique >
-Doclet -- DocletEnvironment : : imprique >
-Doclet -- Locale
-DocletEnvironment -- Element : utilise >
+interface Element
+{
 
-DocletEnvironment -- Reporter : u >
-DocletEnvironment -- SourceVersion :  >
+}
 
-class ToolProvider
+FirstDoclet ..> Element : <<use>>
+FirstDoclet ..> DocletEnvironment : <<use>>
+FirstDoclet ..> SourceVersion : <<use>>
+FirstDoclet ..> Option : <<use>>
 
-
-ToolProvider -- Doclet
 
 
 @enduml
-

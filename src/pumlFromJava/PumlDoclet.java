@@ -13,8 +13,8 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class PumlDoclet implements Doclet {
-    OptionOut optionOut = new OptionOut();
-    OptionD optionD = new OptionD();
+    private OptionOut optionOut = new OptionOut();
+    private OptionD optionD = new OptionD();
     @Override
     public void init(Locale locale, Reporter reporter) {  }
 

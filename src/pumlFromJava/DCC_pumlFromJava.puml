@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+
+
+class Java2Puml
+{
+}
+
+
+class ClassPUML
+{
+    -el: Element
+    +<<Create>> ClassPUML(xel: Element)
+    +getNomClasse(): String
+    +getField(): String
+    +getEnd(): String
+}
+
+
+class InterfacePUML
+{
+}
+
+
+class EnumPUML
+{
+}
+
+
+
+class PumlDoclet implements Doclet
+{
+    +getSupportedOptions() {redefines Doclet::getSupportedOptions}: ?
+    +run(environment: DocletEnvironment): Boolean
+    creationUml(classes: Element[*])
+}
+
+
+class OptionD implements Doclet.Option
+{
+    -chemin: String
+    +getChemin(): String
+}
+
+
+class OptionOut implements Doclet.Option
+{
+    -nomFichier: String
+    +getNomFichier(): String
+}
+
+
+
+PumlDoclet  ..>  OptionD: <<uses>>
+PumlDoclet  ..>  OptionOut: <<uses>>
+
+@enduml

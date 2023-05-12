@@ -1,5 +1,11 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+
 
 class FirstDoclet implements Doclet
 {
@@ -51,6 +57,5 @@ FirstDoclet ..> SourceVersion : <<use>>
 FirstDoclet ..> Option : <<use>>
 
 
-@enduml
 
 @enduml
