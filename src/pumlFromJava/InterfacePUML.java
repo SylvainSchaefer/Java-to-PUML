@@ -4,8 +4,20 @@ import javax.lang.model.element.Element;
 
 public class InterfacePUML
 {
-    public String getName(Element el)
+    private Element el;
+
+    public InterfacePUML(Element xel)
     {
-        return "Interface " + el.getSimpleName();
+        this.el = xel;
+    }
+
+    public String getNameI()
+    {
+        return "Interface " + el.getSimpleName()+"<<interface>> {";
+    }
+
+    public String getEnd()
+    {
+        return "}";
     }
 }

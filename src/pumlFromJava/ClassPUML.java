@@ -2,6 +2,7 @@ package pumlFromJava;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
+import javax.lang.model.type.TypeMirror;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,14 @@ public class ClassPUML
 
        for (Element e : this.el.getEnclosedElements())
        {
-           if (e.getKind().isField()) //VefrifPrimitif
+           if (e.getKind() == ElementKind.FIELD) //Vefrif Si argument
            {
-               res+=(e.getSimpleName().toString())+"\n";
+               TypeMirror fieldType = e.asType();
+               if (fieldType.getKind().isPrimitive())//VefrifPrimitif
+               {
+                   res+=(e.getSimpleName().toString())+"\n";
+               }
+
            }
 
        }
