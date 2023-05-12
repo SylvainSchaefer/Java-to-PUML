@@ -17,7 +17,7 @@ interface Element
 }
 
 
-interface TypeElement extends Element
+interface TypeElement extends QualifiedNameable, Parameterizable
 {
     +getInterfaces(): TypeMirror[*]
     +getNestingKind(): NestingKind
@@ -28,7 +28,7 @@ interface TypeElement extends Element
     +getPermittedSubclasses(): TypeMirror[*]
 }
 
-interface ExecutableElement extends Element
+interface ExecutableElement extends Parameterizable
 {
     +getTypeParameters(): TypeParameterElement[*]
     +getReturnType(): TypeMirror
@@ -37,13 +37,13 @@ interface ExecutableElement extends Element
 }
 
 
-interface ModuleElement extends Element
+interface ModuleElement extends QualifiedNameable
 {
     +getQualifiedName(): Name
     +getEnclosedElements(): Element[*]
 }
 
-interface PackageElement extends Element
+interface PackageElement extends QualifiedNameable
 {
     +getQualifiedName(): Name
 }

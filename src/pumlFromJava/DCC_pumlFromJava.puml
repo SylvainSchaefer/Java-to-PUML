@@ -15,20 +15,29 @@ class Java2Puml
 class ClassPUML
 {
     -el: Element
-    +<<Create>> ClassPUML(xel: Element)
-    +getNomClasse(): String
-    +getField(): String
+    +<<Create>> EnumPUML(xel: Element)
+    +getNameE(): String
+    +getConst(): String
     +getEnd(): String
 }
 
 
 class InterfacePUML
 {
+    -el: Element
+    +<<Create>> InterfacePUML(xel: Element)
+    +getNameI(): String
+    +getEnd(): String
 }
 
 
 class EnumPUML
 {
+    -el: Element
+    +<<Create>> InterfacePUML(xel: Element)
+    +getNameE(): String
+    +getConst(): String
+    +getEnd(): String
 }
 
 
@@ -54,7 +63,9 @@ class OptionOut implements Doclet.Option
     +getNomFichier(): String
 }
 
-
+PumlDoclet  ..>  ClassPUML: <<uses>>
+PumlDoclet  ..>  InterfacePUML: <<uses>>
+PumlDoclet  ..>  EnumPUML: <<uses>>
 
 PumlDoclet  ..>  OptionD: <<uses>>
 PumlDoclet  ..>  OptionOut: <<uses>>
