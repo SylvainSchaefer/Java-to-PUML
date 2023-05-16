@@ -2,6 +2,7 @@ package pumlFromJava;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class ClassPUML
     }
     public String getNomClasse()
     {
+        //if (this.el.getKind() == TypeElement.class)
         return "Class " + this.el.getSimpleName()+"{";
     }
 
@@ -75,5 +77,12 @@ public class ClassPUML
     public String getEnd()
     {
         return "}";
+    }
+
+    public String getAssociationType()
+    {
+        String res = "";
+        String associationType = getAssociationType(element);
+        return res;
     }
 }
