@@ -100,6 +100,7 @@ public class PumlDoclet implements Doclet {
                     writer.println(c.getNomClasse());
                     writer.println(c.getField());
                     writer.println(c.getEnd());
+                    writer.println(c.getAssociations());
 
                 }
                 else if(e.getKind() == ElementKind.INTERFACE) {

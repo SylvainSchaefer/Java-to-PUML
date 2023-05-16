@@ -5,43 +5,76 @@ skinparam classAttributeIconSize 0
 skinparam classFontStyle Bold
 hide empty members
 
-Class Boisson{
+Class western.Boisson{
 
 }
-Class Brigand{
+western.Boisson - western.Substantif
+western.Boisson - western.Boisson
+
+Class western.Brigand{
 recompense
+estLibre
 
 }
-Class Cowboy{
-somme
+western.Brigand - western.Dame
+western.Brigand - western.Cowboy
+western.Brigand - western.Boisson
+
+Class western.CasDeTestStandard{
 
 }
-Class Dame{
+
+Class western.Cowboy{
+gains
 
 }
-Enum Genre<<enum>> {
-MASCULIN
+western.Cowboy - western.HorsLaLoi
+western.Cowboy - western.Boisson
+
+Class western.Dame{
+estLibre
+
+}
+western.Dame - western.Cowboy
+western.Dame - western.HorsLaLoi
+western.Dame - western.Boisson
+
+Enum western.Genre<<enum>> {
 FEMININ
+MASCULIN
 
 }
-Class Histoire3{
+Class western.Histoire4{
 
 }
-Class Histoire4{
+
+Interface western.HorsLaLoi<<interface>> {
+}
+Class western.Narrateur{
 
 }
-Interface HorsLaLoi<<interface>> {
+
+Interface western.Nommable<<interface>> {
 }
-Class Narrateur{
+Class western.Personnage{
 
 }
-Class Personnage{
+western.Personnage - western.Boisson
+western.Personnage - western.Boisson
+
+Class western.Ripou{
 
 }
-Class Ripou{
-recompense
-somme
+western.Ripou - western.Brigand
+
+Class western.Substantif{
 
 }
+western.Substantif - western.Genre
+
+Class western.test{
+
+}
+
 @enduml
 
