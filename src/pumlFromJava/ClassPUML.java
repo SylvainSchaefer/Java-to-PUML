@@ -28,18 +28,49 @@ public class ClassPUML
 
        for (Element e : this.el.getEnclosedElements())
        {
-           if (e.getKind() == ElementKind.FIELD) //Vefrif Si argument
+           if (isPrimitive(e)) //Vefrif Si argument
            {
                TypeMirror fieldType = e.asType();
                if (fieldType.getKind().isPrimitive())//VefrifPrimitif
                {
                    res+=(e.getSimpleName().toString())+"\n";
                }
-
            }
 
        }
        return res;
+    }
+
+
+    public String getAssociations()
+    {
+        String res = "";
+        String res2 = "";
+        for (Element e : this.el.getEnclosedElements())
+        {
+            if (e.getKind() == ElementKind.FIELD) //Vefrif Si argument
+            {
+                if (!isPrimitive(e))//Verif si non Primitif
+                {
+                    res += (el.toString() + " -> " + e.asType())+"\n";
+
+                }
+
+            }
+            System.out.println("getAnnotation :" + res);
+
+        }
+        return res;
+    }
+
+    public boolean isPrimitive(Element e)
+    {
+        TypeMirror fieldType = e.asType();
+        if(!fieldType.getKind().isPrimitive() && !(e.asType().toString().equals("java.lang.String")))
+        {
+            return false;
+        }
+        return true;
     }
     public String getEnd()
     {

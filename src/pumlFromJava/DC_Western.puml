@@ -10,21 +10,23 @@ Class Boisson{
 }
 Class Brigand{
 recompense
+estLibre
+
+}
+Class CasDeTestStandard{
 
 }
 Class Cowboy{
-somme
+gains
 
 }
 Class Dame{
+estLibre
 
 }
 Enum Genre<<enum>> {
-MASCULIN
 FEMININ
-
-}
-Class Histoire3{
+MASCULIN
 
 }
 Class Histoire4{
@@ -35,12 +37,18 @@ Interface HorsLaLoi<<interface>> {
 Class Narrateur{
 
 }
+Interface Nommable<<interface>> {
+}
 Class Personnage{
 
 }
 Class Ripou{
-recompense
-somme
+
+}
+Class Substantif{
+
+}
+Class test{
 
 }
 @enduml
