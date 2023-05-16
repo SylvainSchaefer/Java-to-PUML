@@ -14,7 +14,7 @@ public class EnumPUML
     }
     public String getNameE()
     {
-        return "Enum " + el.getSimpleName()+"<<enum>> {";
+        return "Enum " + el.toString()+"<<enum>> {";
     }
 
     public String getConst()

@@ -13,7 +13,7 @@ public class InterfacePUML
 
     public String getNameI()
     {
-        return "Interface " + el.getSimpleName()+"<<interface>> {";
+        return "Interface " + el.toString()+"<<interface>> {";
     }
 
     public String getEnd()

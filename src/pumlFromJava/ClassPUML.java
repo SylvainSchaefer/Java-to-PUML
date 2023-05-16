@@ -3,9 +3,12 @@ package pumlFromJava;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -21,7 +24,7 @@ public class ClassPUML
     public String getNomClasse()
     {
         //if (this.el.getKind() == TypeElement.class)
-        return "Class " + this.el.getSimpleName()+"{";
+        return "Class " + this.el.toString()+"{";
     }
 
     public String getField()
@@ -47,21 +50,33 @@ public class ClassPUML
     public String getAssociations()
     {
         String res = "";
-        String res2 = "";
         for (Element e : this.el.getEnclosedElements())
         {
-            if (e.getKind() == ElementKind.FIELD) //Vefrif Si argument
+            if (e.getKind() == ElementKind.FIELD)
             {
-                if (!isPrimitive(e))//Verif si non Primitif
+                if (!isPrimitive(e))
                 {
-                    res += (el.toString() + " -> " + e.asType())+"\n";
+                    TypeMirror fieldType = e.asType();
+                    if (fieldType instanceof DeclaredType)
+                    {
+                        DeclaredType declaredType = (DeclaredType) fieldType;
+                        List<? extends TypeMirror> typeArguments = declaredType.getTypeArguments();
+                        if (!typeArguments.isEmpty())
+                        {
+                            TypeMirror typeArgument = typeArguments.get(0);
+                            String className = typeArgument.toString();
+                            res += (el.toString() + " - " + className) + "\n";
+                        }
+                        else
+                        {
+                            res += (el.toString() + " - " + fieldType.toString()) + "\n";
+                        }
+                    }
 
                 }
-
             }
-            System.out.println("getAnnotation :" + res);
-
         }
+        System.out.println(res);
         return res;
     }
 
@@ -79,10 +94,4 @@ public class ClassPUML
         return "}";
     }
 
-    public String getAssociationType()
-    {
-        String res = "";
-        String associationType = getAssociationType(element);
-        return res;
-    }
 }
