@@ -16,8 +16,12 @@ class ClassPUML
 {
     -el: Element
     +<<Create>> EnumPUML(xel: Element)
-    +getNameE(): String
-    +getConst(): String
+    +getNomClasse(): String
+    +getField(): String
+    +getAssociations(): String
+    +isPrimitive(e: Element): Boolean
+    +getType(e: Element): String
+    +getVisibility(element: Element): String
     +getEnd(): String
 }
 
