@@ -11,6 +11,14 @@ class Java2Puml
 {
 }
 
+class SuperClassUML
+{
+    -el: Element
+    +<<Create>> SuperClasseUML(el: Element)
+    +getSuperClassName(): String
+    +isInternal(element: TypeMirror): Boolean
+}
+
 
 class ClassPUML
 {
