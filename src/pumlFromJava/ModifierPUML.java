@@ -1,11 +1,17 @@
 package pumlFromJava;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.TypeMirror;
 
 public class ModifierPUML
 {
-    /*public String getModifier(Element el)
+    private Element el;
+
+    public ModifierPUML(Element xel)
     {
-        //if (el.getModifiers().equals("public"))
-    }*/
+        this.el = xel;
+    }
+
+
 }

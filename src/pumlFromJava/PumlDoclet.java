@@ -101,6 +101,8 @@ public class PumlDoclet implements Doclet {
                     writer.println(c.getField());
                     writer.println(c.getEnd());
                     writer.println(c.getAssociations());
+                    SuperClasseUML sup = new SuperClasseUML(e);
+                    writer.println(sup.getSuperClassName());
 
                 }
                 else if(e.getKind() == ElementKind.INTERFACE) {
