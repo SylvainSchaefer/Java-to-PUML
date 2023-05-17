@@ -35,12 +35,13 @@ public class ClassPUML
 
        for (Element e : this.el.getEnclosedElements())
        {
-           if (isPrimitive(e)) //Vefrif Si argument
+           if (isPrimitive(e)) //Verif Si argument
            {
                TypeMirror fieldType = e.asType();
                if (fieldType.getKind().isPrimitive())//VefrifPrimitif
                {
-                   res+= this.getVisibility(e)+(e.getSimpleName().toString())+"\n";
+                   res += (e.getSimpleName().toString()) + "\n";
+                   //res+= this.getVisibility(e)+(e.getSimpleName().toString())+ ": " + fieldType + "\n";
                }
            }
 
@@ -71,7 +72,7 @@ public class ClassPUML
                         }
                         else
                         {
-                            res += (el.toString() + " - " + fieldType.toString()) + "\n";
+                            res += (el.toString() + " -- " + fieldType.toString()) + "\n";
                         }
                     }
 
@@ -91,6 +92,8 @@ public class ClassPUML
         }
         return true;
     }
+
+
     public String getEnd()
     {
         return "}";
@@ -107,7 +110,6 @@ public class ClassPUML
         String res = "";
 
         String modifier = element.getModifiers().toString().toLowerCase();
-        System.out.println(modifier+"test");
         if (modifier.contains("public"))
         {
            res+= "+ ";
