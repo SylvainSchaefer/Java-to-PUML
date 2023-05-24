@@ -29,7 +29,7 @@ public class SuperClasseUML
 
         TypeMirror superClasse = typeElement.getSuperclass();
 
-        
+
 
         return el.getSimpleName() +" ---|> "+superClasse.toString();
     }

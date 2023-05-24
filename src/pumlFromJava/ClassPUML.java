@@ -1,9 +1,6 @@
 package pumlFromJava;
 
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.Modifier;
-import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.*;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
 import java.lang.reflect.Field;
@@ -40,13 +37,33 @@ public class ClassPUML
                TypeMirror fieldType = e.asType();
                if (fieldType.getKind().isPrimitive())//VefrifPrimitif
                {
-                   res += (e.getSimpleName().toString()) + "\n";
+                   res += (getVisibility(e)+e.getSimpleName().toString()) + "\n";
                    //res+= this.getVisibility(e)+(e.getSimpleName().toString())+ ": " + fieldType + "\n";
                }
            }
 
        }
        return res;
+    }
+
+    public String getFieldDCA()
+    {
+        String res = "";
+
+        for (Element e : this.el.getEnclosedElements())
+        {
+            if (isPrimitive(e)) //Verif Si argument
+            {
+                TypeMirror fieldType = e.asType();
+                if (fieldType.getKind().isPrimitive())//VefrifPrimitif
+                {
+                    res += (e.getSimpleName().toString()) + "\n";
+                    //res+= this.getVisibility(e)+(e.getSimpleName().toString())+ ": " + fieldType + "\n";
+                }
+            }
+
+        }
+        return res;
     }
 
 
@@ -123,6 +140,89 @@ public class ClassPUML
             res+= "# ";
         }
 
+        return res;
+    }
+
+    public String getMethode()
+    {
+        String res = "";
+
+        for (Element e : this.el.getEnclosedElements()) {
+            if (e.getKind() == ElementKind.METHOD)
+            {
+                res += getVisibility(e);
+                res += e.getSimpleName() + "()";
+                res += " : " ;
+                String returnType = getType(e).toString();
+                if (!returnType.toLowerCase().contains("void"))
+                {
+                    res += returnType;
+                }
+
+                res += "\n";
+            }
+        }
+
+        return res;
+    }
+
+
+
+    public String getConstructors()
+    {
+        List<String> constructors = new ArrayList<>();
+        String res = "";
+
+        for (Element element : this.el.getEnclosedElements())
+        {
+            if (element.getKind() == ElementKind.CONSTRUCTOR)
+            {
+                ExecutableElement constructorEl = (ExecutableElement) element;
+                String constructorSignature = getConstructorUML(constructorEl);
+                constructors.add(constructorSignature);
+            }
+        }
+
+        for (String construct : constructors)
+        {
+            res+= construct+"\n";
+        }
+
+        return res;
+    }
+
+    private String getConstructorUML(ExecutableElement constructorEl)
+    {
+
+
+        String res = "";
+
+        // Visibility modifier
+        res += getVisibility(constructorEl);
+
+        // Nom du constructeur
+
+        res+= constructorEl.toString()+"(";
+
+        // Parametre du constructeur
+        List<? extends Element> parameters = constructorEl.getParameters();
+        for (int i = 0; i < parameters.size(); i++)
+        {
+            Element parameter = parameters.get(i);
+
+            res+= parameter.asType().toString()+" "+parameter.getSimpleName();
+
+            if (i < parameters.size() - 1)
+            {
+                res+=", ";
+            }
+        }
+
+        res+=")";
+
+
+
+        //return sb.toString();
         return res;
     }
 

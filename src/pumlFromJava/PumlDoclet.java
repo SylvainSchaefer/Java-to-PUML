@@ -99,6 +99,8 @@ public class PumlDoclet implements Doclet {
                     ClassPUML c = new ClassPUML(e);
                     writer.println(c.getNomClasse());
                     writer.println(c.getField());
+                    writer.println(c.getConstructors());
+                    writer.println(c.getMethode());
                     writer.println(c.getEnd());
                     writer.println(c.getAssociations());
                     SuperClasseUML sup = new SuperClasseUML(e);
