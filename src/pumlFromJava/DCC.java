@@ -33,31 +33,31 @@ public class DCC {
             if(e.getKind() == ElementKind.CLASS)
             {
                 ClassPUML c = new ClassPUML(e);
-                uml += (c.getNomClasse());
-                uml += (c.getField());
+                uml += (c.getNomClasse()) + "\n";
+                uml += (c.getField()) + "\n";
 
                 Constructor constructor = new Constructor(e);
-                uml += (constructor.getConstructors());
+                uml += (constructor.getConstructors()) + "\n";
 
-                uml += (c.getMethode());
-                uml += (c.getEnd());
-                uml += (c.getAssociations());
+                uml += (c.getMethode()) + "\n";
+                uml += (c.getEnd()) + "\n";
+                uml += (c.getAssociations()) + "\n";
                 SuperClasseUML sup = new SuperClasseUML(e);
-                uml += (sup.getSuperClassName());
+                uml += (sup.getSuperClassName()) + "\n";
 
             }
             else if(e.getKind() == ElementKind.INTERFACE) {
 
                 InterfacePUML i = new InterfacePUML(e);
-                uml += (i.getNameI());
-                uml += (i.getEnd());
+                uml += (i.getNameI()) + "\n";
+                uml += (i.getEnd()) + "\n";
             }
             else if (e.getKind() == ElementKind.ENUM)
             {
                 EnumPUML en = new EnumPUML(e);
-                uml += (en.getNameE());
-                uml += (en.getConst());
-                uml += (en.getEnd());
+                uml += (en.getNameE()) + "\n";
+                uml += (en.getConst()) + "\n";
+                uml += (en.getEnd()) + "\n";
             }
 
         }
