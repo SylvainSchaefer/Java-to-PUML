@@ -7,14 +7,39 @@ hide empty members
 
 Class western.Boisson{
 
++ <<create>> Boisson(nom: String, genre: Genre)
+
++ getNom(): String
++ getGenre(): Genre
++ getNomAvecArticleIndefini(): String
++ getNomAvecArticlePartitif(): String
++ getNomAvecArticleDefini(): String
++ getNomAvecPreposition(preposition: String): String
+
 }
 western.Boisson -- western.Substantif
 western.Boisson -- western.Boisson
 
 
 Class western.Brigand{
-recompense
-estLibre
+- recompense
+- estLibre
+
++ <<create>> Brigand(nom: String)
++ <<create>> Brigand(nom: String, boisson: Boisson)
++ <<create>> Brigand(nom: String, boisson: Boisson, look: String)
+
++ getLook(): String
++ getRecompense(): ()int
++ estLibre(): ()boolean
++ kidnapper(dame: Dame)
++ seFaireCapturer(cowBoy: Cowboy)
++ seFaireTirerDessus(cowBoy: Cowboy)
++ getPseudo(): String
++ getCaptives(): Dame[*]
++ sePresenter()
++ getBoissonParDefaut(): Boisson
++ setBoissonParDefaut(boisson: Boisson)
 
 }
 western.Brigand - western.Dame
@@ -24,11 +49,35 @@ western.Brigand -- western.Boisson
 western.Brigand ---|> western.Personnage
 Class western.CasDeTestStandard{
 
++ <<create>> CasDeTestStandard()
+
++ beforeAll()
++ beforeEach()
++ testMethod1()
++ testMethod2()
++ testMethod3()
++ testMethod4()
++ testMethod5()
++ afterEach()
++ afterAll()
+
 }
 
 
 Class western.Cowboy{
-gains
+- gains
+
++ <<create>> Cowboy(nom: String)
++ <<create>> Cowboy(nom: String, boisson: Boisson)
+
++ getPseudo(): String
++ liberer(dame: Dame)
++ liberer(captives: Dame[*])
++ capturer(horsLaLoi: HorsLaLoi)
++ tirerSur(brigand: HorsLaLoi)
++ sePresenter()
++ getBoissonParDefaut(): Boisson
++ setBoissonParDefaut(boisson: Boisson)
 
 }
 western.Cowboy - western.HorsLaLoi
@@ -36,7 +85,19 @@ western.Cowboy -- western.Boisson
 
 western.Cowboy ---|> western.Personnage
 Class western.Dame{
-estLibre
+- estLibre
+
++ <<create>> Dame(nom: String)
++ <<create>> Dame(nom: String, boisson: Boisson)
+
++ getPseudo(): String
++ seFaireKidnapper(horsLaLoi: HorsLaLoi)
++ seFaireLiberer(cowBoy: Cowboy)
++ estLibre(): ()boolean
++ sePresenter()
++ getBoissonParDefaut(): Boisson
++ setBoissonParDefaut(boisson: Boisson)
++ getRavisseur(): HorsLaLoi
 
 }
 western.Dame -- western.Cowboy
@@ -51,12 +112,24 @@ MASCULIN
 }
 Class western.Histoire4{
 
++ <<create>> Histoire4()
+
++ main(args: String[])
+
 }
 
 
 Interface western.HorsLaLoi<<interface>> {
 }
 Class western.Narrateur{
+
++ <<create>> Narrateur()
++ <<create>> Narrateur(nom: String)
+
++ dire(texte: String)
++ boire(boisson: Boisson)
++ boire()
++ getPseudo(): String
 
 }
 
@@ -65,6 +138,18 @@ Interface western.Nommable<<interface>> {
 }
 Class western.Personnage{
 
++ <<create>> Personnage(nom: String)
++ <<create>> Personnage(nom: String, boisson: Boisson)
+
++ dire(texte: String)
++ sePresenter()
++ boire(boisson: Boisson)
++ boire()
++ getNom(): String
++ getBoisson(): Boisson
++ getPseudos(personnages: Nommable[*]): String
++ getBoissonParDefaut(): Boisson
+
 }
 western.Personnage -- western.Boisson
 western.Personnage -- western.Boisson
@@ -72,11 +157,45 @@ western.Personnage -- western.Boisson
 
 Class western.Ripou{
 
++ <<create>> Ripou(nom: String)
++ <<create>> Ripou(nom: String, boisson: Boisson)
++ <<create>> Ripou(nom: String, boisson: Boisson, look: String)
+
++ getLook(): String
++ estLibre(): ()boolean
++ getRecompense(): ()int
++ kidnapper(dame: Dame)
++ getCaptives(): Dame[*]
++ seFaireCapturer(cowBoy: Cowboy)
++ seFaireTirerDessus(cowBoy: Cowboy)
++ getPseudo(): String
++ sePresenter()
++ liberer(dame: Dame)
+
 }
 western.Ripou -- western.Brigand
 
 western.Ripou ---|> western.Cowboy
 Class western.Substantif{
+
++ <<create>> Substantif(nom: String, genre: Genre)
+
++ getNom(): String
++ getGenre(): Genre
++ toString(): String
++ isVowel(c: char): (char)boolean
++ startsWithVowel(s: String): String)boolean
++ getArticleIndefini(): String
++ avecArticleIndefini(): String
++ getArticleDefini(genre: Genre): String
++ getArticleDefini(): String
++ avecArticleDefini(): String
++ faireElision(article: String): String
++ elision(): ()boolean
++ getArticlePartitif(): String
++ avecArticlePartitif(): String
++ avecElision(article: String): String
++ avecPreposition(preposition: String): String
 
 }
 western.Substantif -- western.Genre
@@ -84,7 +203,11 @@ western.Substantif -- western.Genre
 
 Class western.test{
 
++ <<create>> test()
+
+
 }
+
 
 
 @enduml

@@ -101,7 +101,7 @@ public class PumlDoclet implements Doclet {
 
                     writer.println(c.getNomClasse());
                     writer.println(c.getField());
-                    writer.println(c.getConstructors());
+                    //writer.println(c.getConstructors());
                     writer.println(c.getMethode());
                     writer.println(c.getEnd());
                     writer.println(c.getAssociations());
@@ -124,6 +124,12 @@ public class PumlDoclet implements Doclet {
                 }
             }
             writer.println("@enduml\n");
+
+            DCC dcc = new DCC(classes);
+            writer.println(dcc.getEn_tete());
+            writer.println(dcc.getUML());
+            writer.println(DCC.getFin());
+
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
