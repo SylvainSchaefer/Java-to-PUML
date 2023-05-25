@@ -87,44 +87,10 @@ public class PumlDoclet implements Doclet {
 
         try {
             PrintWriter writer = new PrintWriter(fichier);
-            writer.println("@startuml\n" +
-                    "'https://plantuml.com/class-diagram\n" +
-                    "skinparam style strictuml\n" +
-                    "skinparam classAttributeIconSize 0\n" +
-                    "skinparam classFontStyle Bold\n" +
-                    "hide empty members\n");
-            for (Element e : classes) {
-                if(e.getKind() == ElementKind.CLASS)
-                {
-                    ClassPUML c = new ClassPUML(e);
-                    writer.println(c.getNomClasse());
-                    writer.println(c.getField());
-
-                    Constructor constructor = new Constructor(e);
-                    writer.println(constructor.getConstructors());
-
-                    writer.println(c.getMethode());
-                    writer.println(c.getEnd());
-                    writer.println(c.getAssociations());
-                    SuperClasseUML sup = new SuperClasseUML(e);
-                    writer.println(sup.getSuperClassName());
-
-                }
-                else if(e.getKind() == ElementKind.INTERFACE) {
-
-                    InterfacePUML i = new InterfacePUML(e);
-                    writer.println(i.getNameI());
-                    writer.println(i.getEnd());
-                }
-                else if (e.getKind() == ElementKind.ENUM)
-                {
-                    EnumPUML en = new EnumPUML(e);
-                    writer.println(en.getNameE());
-                    writer.println(en.getConst());
-                    writer.println(en.getEnd());
-                }
-            }
-            writer.println("@enduml\n");
+            DCC dcc = new DCC(classes);
+            writer.println(dcc.getEn_tete());
+            writer.println(dcc.getUML());
+            writer.println(DCC.getFin());
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
