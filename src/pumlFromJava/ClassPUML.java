@@ -3,9 +3,7 @@ package pumlFromJava;
 import javax.lang.model.element.*;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
-import java.lang.reflect.Field;
 import java.util.*;
-import java.util.Set;
 
 
 public class ClassPUML
@@ -114,35 +112,7 @@ public class ClassPUML
     }
 
 
-    public String getType(Element e)
-    {
-        String res = "";
-        res += ": " ;
-        int indexLastParenthese = e.asType().toString().lastIndexOf(")");
-        int indexIndicateurList;
-        if (e.asType().toString().contains("<") && e.asType().toString().contains(">"))
-        {
-            indexIndicateurList = e.asType().toString().lastIndexOf(">");
-            if(indexIndicateurList > indexLastParenthese)
-            {
-                String nomCollection = e.asType().toString().substring(e.asType().toString().lastIndexOf('.') + 1);
-                System.out.println("nom collection : " + e.asType().toString());
-                nomCollection = nomCollection.substring(0, nomCollection.length() - 1);
 
-                res += nomCollection + "[*]";
-            }
-            else
-            {
-                res += e.asType().toString().substring(e.asType().toString().lastIndexOf('.') + 1);
-            }
-        }
-        else
-        {
-            res += e.asType().toString().substring(e.asType().toString().lastIndexOf('.') + 1);
-        }
-
-        return res;
-    }
 
     private String getVisibility(Element element)
     {
@@ -176,12 +146,14 @@ public class ClassPUML
                 res += getVisibility(e);
 
                 xEl = (ExecutableElement) e;
-                res += e.getSimpleName() + "("+ getParametersUML(xEl) + ")";
+                Type type = new Type(xEl);
+                Parameter parameter = new Parameter(xEl);
+                res += e.getSimpleName() + "("+ parameter.getParametersUML() + ")";
 
                 String returnType = e.asType().toString();
                 if (!returnType.toLowerCase().contains("void"))
                 {
-                    res += getType(e);
+                    res += type.getType();
                 }
                 res += "\n";
             }
@@ -217,7 +189,7 @@ public class ClassPUML
 
     private String getConstructorUML(ExecutableElement constructorEl)
     {
-
+        Parameter parameter = new Parameter(constructorEl);
 
         String res = "";
 
@@ -229,30 +201,9 @@ public class ClassPUML
         String nomConstructeur = constructorEl.getEnclosingElement().getSimpleName().toString();
         res += nomConstructeur+"(";
 
-        res += getParametersUML(constructorEl);
+        res += parameter.getParametersUML();
 
         res+=")";
-
-        return res;
-    }
-
-
-    public String getParametersUML(ExecutableElement constructorEl)
-    {
-        List<? extends Element> parameters = constructorEl.getParameters();
-        String res = "";
-        for (int i = 0; i < parameters.size(); i++)
-        {
-            Element parameter = parameters.get(i);
-
-            res+= parameter.getSimpleName() + getType(parameter);
-
-
-            if (i < parameters.size() - 1)
-            {
-                res+=", ";
-            }
-        }
 
         return res;
     }
