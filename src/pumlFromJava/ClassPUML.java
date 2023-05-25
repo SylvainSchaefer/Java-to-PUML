@@ -88,7 +88,6 @@ public class ClassPUML
                             res += (el.toString() + " -- " + fieldType.toString()) + "\n";
                         }
                     }
-
                 }
             }
         }
