@@ -118,11 +118,23 @@ public class ClassPUML
     {
         String res = "";
         res += ": " ;
-        if (e.asType().toString().contains("<") && e.asType().toString().contains("<"))
+        int indexLastParenthese = e.asType().toString().lastIndexOf(")");
+        int indexIndicateurList;
+        if (e.asType().toString().contains("<") && e.asType().toString().contains(">"))
         {
-            String nomCollection = e.asType().toString().substring(e.asType().toString().lastIndexOf('.') + 1);
-            nomCollection = nomCollection.substring(0, nomCollection.length() - 1);
-            res += nomCollection + "[*]";
+            indexIndicateurList = e.asType().toString().lastIndexOf(">");
+            if(indexIndicateurList > indexLastParenthese)
+            {
+                String nomCollection = e.asType().toString().substring(e.asType().toString().lastIndexOf('.') + 1);
+                System.out.println("nom collection : " + e.asType().toString());
+                nomCollection = nomCollection.substring(0, nomCollection.length() - 1);
+
+                res += nomCollection + "[*]";
+            }
+            else
+            {
+                res += e.asType().toString().substring(e.asType().toString().lastIndexOf('.') + 1);
+            }
         }
         else
         {

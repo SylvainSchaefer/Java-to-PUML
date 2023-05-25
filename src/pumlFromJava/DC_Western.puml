@@ -147,7 +147,7 @@ Class western.Personnage{
 + boire()
 + getNom(): String
 + getBoisson(): Boisson
-+ getPseudos(personnages: Nommable[*]): Strin[*]
++ getPseudos(personnages: Nommable[*]): String
 + getBoissonParDefaut(): Boisson
 
 }
