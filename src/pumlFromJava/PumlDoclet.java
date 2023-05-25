@@ -15,6 +15,7 @@ import java.util.*;
 public class PumlDoclet implements Doclet {
     private OptionOut optionOut = new OptionOut();
     private OptionD optionD = new OptionD();
+    private OptionDC optionDC = new OptionDC();
     @Override
     public void init(Locale locale, Reporter reporter) {  }
 
@@ -34,6 +35,7 @@ public class PumlDoclet implements Doclet {
 
         options.add(optionD);
         options.add(optionOut);
+        options.add(optionDC);
         return options;
     }
 
@@ -87,11 +89,18 @@ public class PumlDoclet implements Doclet {
 
         try {
             PrintWriter writer = new PrintWriter(fichier);
-            DCC dcc = new DCC(classes);
-            writer.println(dcc.getEn_tete());
-            writer.println(dcc.getUML());
-            writer.println(DCC.getFin());
-            writer.close();
+            if(optionDC.getTypeDC() == "A")
+            {
+
+            }
+            else
+            {
+                DCC dcc = new DCC(classes);
+                writer.println(dcc.getEn_tete());
+                writer.println(dcc.getUML());
+                writer.println(DCC.getFin());
+                writer.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
