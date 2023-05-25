@@ -117,7 +117,7 @@ public class ClassPUML
     public String getType(Element e)
     {
         String res = "";
-        res += " : " ;
+        res += ": " ;
         if (e.asType().toString().contains("<") && e.asType().toString().contains("<"))
         {
             String nomCollection = e.asType().toString().substring(e.asType().toString().lastIndexOf('.') + 1);
@@ -156,13 +156,15 @@ public class ClassPUML
     public String getMethode()
     {
         String res = "";
+        ExecutableElement xEl;
 
         for (Element e : this.el.getEnclosedElements()) {
             if (e.getKind() == ElementKind.METHOD)
             {
                 res += getVisibility(e);
 
-                res += e.getSimpleName() + "()";
+                xEl = (ExecutableElement) e;
+                res += e.getSimpleName() + "("+ getParametersUML(xEl) + ")";
 
                 String returnType = e.asType().toString();
                 if (!returnType.toLowerCase().contains("void"))
@@ -208,19 +210,31 @@ public class ClassPUML
         String res = "";
 
         // Visibility modifier
-        res += getVisibility(constructorEl);
+        res += getVisibility(constructorEl) + "<<create>> ";
 
         // Nom du constructeur
 
-        res+= constructorEl.toString()+"(";
+        String nomConstructeur = constructorEl.getEnclosingElement().getSimpleName().toString();
+        res += nomConstructeur+"(";
 
-        // Parametre du constructeur
+        res += getParametersUML(constructorEl);
+
+        res+=")";
+
+        return res;
+    }
+
+
+    public String getParametersUML(ExecutableElement constructorEl)
+    {
         List<? extends Element> parameters = constructorEl.getParameters();
+        String res = "";
         for (int i = 0; i < parameters.size(); i++)
         {
             Element parameter = parameters.get(i);
 
-            res+= parameter.asType().toString()+" "+parameter.getSimpleName();
+            res+= parameter.getSimpleName() + getType(parameter);
+
 
             if (i < parameters.size() - 1)
             {
@@ -228,12 +242,6 @@ public class ClassPUML
             }
         }
 
-        res+=")";
-
-
-
-        //return sb.toString();
         return res;
     }
-
 }
