@@ -28,20 +28,20 @@ public class SuperClasseUML
         TypeElement typeElement = (TypeElement) this.el;
         TypeMirror superClasse = typeElement.getSuperclass();
 
-<<<<<<< HEAD
 
 
-        return el.getSimpleName() +" ---|> "+superClasse.toString();
-=======
-        System.out.println(el.toString() +" ---|> "+superClasse.toString());
+
+        //return el.getSimpleName() +" ---|> "+superClasse.toString();
+
+
         if(isInternal(superClasse))
         {
-            System.out.println("Passé: " + el.toString() +" ---|> "+superClasse.toString());
+
             return el.toString() +" ---|> "+superClasse.toString();
         }
-        System.out.println("Pas passé: " + el.toString() +" ---|> "+superClasse.toString());
+
         return "";
->>>>>>> 9f5f5fa574a30b7222b9b923977647a73b88632a
+
     }
 
 
@@ -51,11 +51,11 @@ public class SuperClasseUML
         {
             if(e.asType() == element)
             {
-                System.out.println(e.toString() + "|" + element.toString());
+
                 return true;
             }
         }
-        System.out.println("Non validé");
+
         return false;
     }
 

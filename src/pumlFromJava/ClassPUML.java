@@ -127,6 +127,18 @@ public class ClassPUML
         String res = "";
 
         String modifier = element.getModifiers().toString().toLowerCase();
+        if (modifier.contains("static"))
+        {
+            res+= "{static} ";
+        }
+        else if (modifier.contains("final"))
+        {
+            res+= "{read only} ";
+        }
+        /*else if (modifier.contains("abstract"))
+        {
+            res+= "abstract ";
+        }*/
         if (modifier.contains("public"))
         {
            res+= "+ ";

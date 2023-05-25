@@ -13,5 +13,24 @@ public class ModifierPUML
         this.el = xel;
     }
 
+    private String getVisibility(Element element)
+    {
+        String res = "";
 
+        String modifier = element.getModifiers().toString().toLowerCase();
+        if (modifier.contains("public"))
+        {
+            res+= "+ ";
+        }
+        else if (modifier.contains("private"))
+        {
+            res+= "- ";
+        }
+        else if (modifier.contains("protected"))
+        {
+            res+= "# ";
+        }
+
+        return res;
+    }
 }
