@@ -32,7 +32,8 @@ public class ClassPUML
                TypeMirror fieldType = e.asType();
                if (fieldType.getKind().isPrimitive())//VefrifPrimitif
                {
-                   res += (getVisibility(e)+e.getSimpleName().toString()) + "\n";
+                   Visibility v = new Visibility(e);
+                   res += (v.getVisibility()+e.getSimpleName().toString()) + "\n";
                    //res+= this.getVisibility(e)+(e.getSimpleName().toString())+ ": " + fieldType + "\n";
                }
            }
@@ -114,26 +115,7 @@ public class ClassPUML
 
 
 
-    private String getVisibility(Element element)
-    {
-        String res = "";
 
-        String modifier = element.getModifiers().toString().toLowerCase();
-        if (modifier.contains("public"))
-        {
-           res+= "+ ";
-        }
-        else if (modifier.contains("private"))
-        {
-            res+= "- ";
-        }
-        else if (modifier.contains("protected"))
-        {
-            res+= "# ";
-        }
-
-        return res;
-    }
 
     public String getMethode()
     {
@@ -143,7 +125,8 @@ public class ClassPUML
         for (Element e : this.el.getEnclosedElements()) {
             if (e.getKind() == ElementKind.METHOD)
             {
-                res += getVisibility(e);
+                Visibility v = new Visibility(e);
+                res += v.getVisibility();
 
                 xEl = (ExecutableElement) e;
                 Type type = new Type(xEl);
@@ -164,47 +147,7 @@ public class ClassPUML
 
 
 
-    public String getConstructors()
-    {
-        List<String> constructors = new ArrayList<>();
-        String res = "";
 
-        for (Element element : this.el.getEnclosedElements())
-        {
-            if (element.getKind() == ElementKind.CONSTRUCTOR)
-            {
-                ExecutableElement constructorEl = (ExecutableElement) element;
-                String constructorSignature = getConstructorUML(constructorEl);
-                constructors.add(constructorSignature);
-            }
-        }
 
-        for (String construct : constructors)
-        {
-            res+= construct+"\n";
-        }
 
-        return res;
-    }
-
-    private String getConstructorUML(ExecutableElement constructorEl)
-    {
-        Parameter parameter = new Parameter(constructorEl);
-
-        String res = "";
-
-        // Visibility modifier
-        res += getVisibility(constructorEl) + "<<create>> ";
-
-        // Nom du constructeur
-
-        String nomConstructeur = constructorEl.getEnclosingElement().getSimpleName().toString();
-        res += nomConstructeur+"(";
-
-        res += parameter.getParametersUML();
-
-        res+=")";
-
-        return res;
-    }
 }
