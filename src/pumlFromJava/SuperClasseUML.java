@@ -30,15 +30,14 @@ public class SuperClasseUML
 
 
 
-<<<<<<< HEAD
+
 
         //return el.getSimpleName() +" ---|> "+superClasse.toString();
 
 
-=======
         //return el.getSimpleName() +" ---|> "+superClasse.toString();
         //System.out.println(el.toString() +" ---|> "+superClasse.toString());
->>>>>>> bcc6c3b16541489229d1af834ccd5d28864f9cdf
+
         if(isInternal(superClasse))
         {
 
@@ -46,10 +45,7 @@ public class SuperClasseUML
         }
 
         return "";
-<<<<<<< HEAD
 
-=======
->>>>>>> bcc6c3b16541489229d1af834ccd5d28864f9cdf
     }
 
 
