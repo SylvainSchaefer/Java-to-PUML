@@ -49,14 +49,15 @@ public class DCC {
             else if(e.getKind() == ElementKind.INTERFACE) {
 
                 InterfacePUML i = new InterfacePUML(e);
-                uml += (i.getNameI()) + "\n";
+                uml += (i.getNomClasse()) + "\n";
                 uml += (i.getEnd()) + "\n";
             }
             else if (e.getKind() == ElementKind.ENUM)
             {
                 EnumPUML en = new EnumPUML(e);
-                uml += (en.getNameE()) + "\n";
-                uml += (en.getConst()) + "\n";
+                uml += (en.getNomClasse()) + "\n";
+                uml += (en.getBody())+ "\n";
+                //uml += (en.getConst()) + "\n";
                 uml += (en.getEnd()) + "\n";
             }
 

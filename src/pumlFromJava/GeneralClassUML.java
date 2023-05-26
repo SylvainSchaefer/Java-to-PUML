@@ -14,15 +14,20 @@ public abstract class GeneralClassUML
 
     public abstract String getNomClasse();
 
-    public abstract String getEnd();
+    public String getEnd()
+    {
+        return "}";
+    }
 
-    public abstract String  getField();
+    public abstract String getBody();
 
-    public abstract String getFieldDCA();
+    //public abstract String  getField();
 
-    public abstract String  getAssociations();
+    //public abstract String getFieldDCA();
 
-    public abstract String getMethode();
+    //public abstract String  getAssociations();
+
+    //public abstract String getMethode();
 
 
 }

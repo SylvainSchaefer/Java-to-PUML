@@ -2,22 +2,23 @@ package pumlFromJava;
 
 import javax.lang.model.element.Element;
 
-public class InterfacePUML
+public class InterfacePUML extends GeneralClassUML
 {
     private Element el;
 
-    public InterfacePUML(Element xel)
+    public InterfacePUML(Element element)
     {
-        this.el = xel;
+        super(element);
     }
-
-    public String getNameI()
+    @Override
+    public String getNomClasse()
     {
         return "Interface " + el.toString()+"<<interface>> {";
     }
 
-    public String getEnd()
+    @Override
+    public String getBody()
     {
-        return "}";
+        return ""; // Les interfaces n'ont pas de corps dans un diagramme de classe
     }
 }

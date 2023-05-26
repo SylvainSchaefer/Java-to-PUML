@@ -3,22 +3,23 @@ package pumlFromJava;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 
-public class EnumPUML
+public class EnumPUML extends GeneralClassUML
 {
 
     private Element el;
 
     public EnumPUML(Element xel)
     {
-        this.el = xel;
+        super(xel);
     }
-    public String getNameE()
+    @Override
+    public String getNomClasse()
     {
         return "Enum " + el.toString()+"<<enum>> {";
     }
 
-    public String getConst()
-    {
+    @Override
+    public String getBody() {
         String res = "";
 
         for (Element e : this.el.getEnclosedElements())
@@ -28,11 +29,9 @@ public class EnumPUML
                 res += e.getSimpleName().toString()+"\n";
             }
         }
+
         return res;
     }
 
-    public String getEnd()
-    {
-        return "}";
-    }
+
 }

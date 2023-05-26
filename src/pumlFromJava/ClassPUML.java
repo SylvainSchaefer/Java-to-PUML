@@ -6,19 +6,41 @@ import javax.lang.model.type.TypeMirror;
 import java.util.*;
 
 
-public class ClassPUML
+public class ClassPUML extends GeneralClassUML
 {
 
     private Element el;
 
     public ClassPUML(Element xel)
     {
-        this.el = xel;
+        super(xel);
     }
+    @Override
     public String getNomClasse()
     {
         //if (this.el.getKind() == TypeElement.class)
         return "Class " + this.el.toString()+"{";
+    }
+
+    public String getBody()
+    {
+        String res = "";
+
+        for (Element enclosedElement : el.getEnclosedElements())
+        {
+            if (enclosedElement.getKind() == ElementKind.FIELD)
+            {
+                FieldUML field = new FieldUML(enclosedElement);
+                res += field.toString() + "\n";
+            }
+            else if (enclosedElement.getKind() == ElementKind.METHOD)
+            {
+                MethodeUML method = new MethodeUML(enclosedElement);
+                res += method.toString() + "\n";
+            }
+        }
+
+        return res;
     }
 
     public String getField()

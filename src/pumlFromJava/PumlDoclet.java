@@ -89,7 +89,7 @@ public class PumlDoclet implements Doclet {
 
         try {
             PrintWriter writer = new PrintWriter(fichier);
-<<<<<<< HEAD
+
             writer.println("@startuml\n" +
                     "'https://plantuml.com/class-diagram\n" +
                     "skinparam style strictuml\n" +
@@ -103,9 +103,10 @@ public class PumlDoclet implements Doclet {
                     SuperClasseUML sup = new SuperClasseUML(e);
 
                     writer.println(c.getNomClasse());
-                    writer.println(c.getField());
+                    writer.println(c.getBody());
+                    //writer.println(c.getField());
                     //writer.println(c.getConstructors());
-                    writer.println(c.getMethode());
+                    //writer.println(c.getMethode());
                     writer.println(c.getEnd());
                     writer.println(c.getAssociations());
 
@@ -115,14 +116,15 @@ public class PumlDoclet implements Doclet {
                 else if(e.getKind() == ElementKind.INTERFACE) {
 
                     InterfacePUML i = new InterfacePUML(e);
-                    writer.println(i.getNameI());
+                    writer.println(i.getNomClasse());
                     writer.println(i.getEnd());
                 }
                 else if (e.getKind() == ElementKind.ENUM)
                 {
                     EnumPUML en = new EnumPUML(e);
-                    writer.println(en.getNameE());
-                    writer.println(en.getConst());
+                    writer.println(en.getNomClasse());
+                    writer.println(en.getBody());
+                    //writer.println(en.getConst());
                     writer.println(en.getEnd());
                 }
             }
@@ -134,20 +136,20 @@ public class PumlDoclet implements Doclet {
             writer.println(DCC.getFin());
 
             writer.close();
-=======
+
             if(optionDC.getTypeDC() == "A")
             {
 
             }
             else
             {
-                DCC dcc = new DCC(classes);
+                //DCC dcc = new DCC(classes);
                 writer.println(dcc.getEn_tete());
                 writer.println(dcc.getUML());
                 writer.println(DCC.getFin());
                 writer.close();
             }
->>>>>>> 1bf01395d268264cb4f45195d90b7f3d4e6c3504
+
         } catch (IOException e) {
             e.printStackTrace();
         }
