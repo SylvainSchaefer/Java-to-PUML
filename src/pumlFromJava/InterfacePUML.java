@@ -8,7 +8,8 @@ public class InterfacePUML extends GeneralClassUML
 
     public InterfacePUML(Element element)
     {
-        super(element);
+        el = element;
+        //super(element);
     }
     @Override
     public String getNomClasse()

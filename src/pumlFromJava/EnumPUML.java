@@ -10,7 +10,8 @@ public class EnumPUML extends GeneralClassUML
 
     public EnumPUML(Element xel)
     {
-        super(xel);
+        el = xel;
+        //super(xel);
     }
     @Override
     public String getNomClasse()

@@ -4,12 +4,12 @@ import javax.lang.model.element.Element;
 
 public abstract class GeneralClassUML
 {
-    private Element el;
+    /*private Element el;
 
     public GeneralClassUML(Element el)
     {
         this.el = el;
-    }
+    }*/
 
 
     public abstract String getNomClasse();

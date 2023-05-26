@@ -13,7 +13,8 @@ public class ClassPUML extends GeneralClassUML
 
     public ClassPUML(Element xel)
     {
-        super(xel);
+        el = xel;
+        //super(xel);
     }
     @Override
     public String getNomClasse()
