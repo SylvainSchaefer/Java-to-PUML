@@ -22,8 +22,8 @@ western.Boisson -- western.Boisson
 
 
 Class western.Brigand{
-- recompense
-- estLibre
+- recompense: int
+- estLibre: boolean
 
 + <<create>> Brigand(nom: String)
 + <<create>> Brigand(nom: String, boisson: Boisson)
@@ -38,8 +38,8 @@ Class western.Brigand{
 + getPseudo(): String
 + getCaptives(): Dame[*]
 + sePresenter()
-+ getBoissonParDefaut(): Boisson
-+ setBoissonParDefaut(boisson: Boisson)
+{static} + getBoissonParDefaut(): Boisson
+{static} + setBoissonParDefaut(boisson: Boisson)
 
 }
 western.Brigand - western.Dame
@@ -51,7 +51,7 @@ Class western.CasDeTestStandard{
 
 + <<create>> CasDeTestStandard()
 
-+ beforeAll()
+{static} + beforeAll()
 + beforeEach()
 + testMethod1()
 + testMethod2()
@@ -59,13 +59,13 @@ Class western.CasDeTestStandard{
 + testMethod4()
 + testMethod5()
 + afterEach()
-+ afterAll()
+{static} + afterAll()
 
 }
 
 
 Class western.Cowboy{
-- gains
+- gains: int
 
 + <<create>> Cowboy(nom: String)
 + <<create>> Cowboy(nom: String, boisson: Boisson)
@@ -76,8 +76,8 @@ Class western.Cowboy{
 + capturer(horsLaLoi: HorsLaLoi)
 + tirerSur(brigand: HorsLaLoi)
 + sePresenter()
-+ getBoissonParDefaut(): Boisson
-+ setBoissonParDefaut(boisson: Boisson)
+{static} + getBoissonParDefaut(): Boisson
+{static} + setBoissonParDefaut(boisson: Boisson)
 
 }
 western.Cowboy - western.HorsLaLoi
@@ -85,7 +85,7 @@ western.Cowboy -- western.Boisson
 
 western.Cowboy ---|> western.Personnage
 Class western.Dame{
-- estLibre
+- estLibre: boolean
 
 + <<create>> Dame(nom: String)
 + <<create>> Dame(nom: String, boisson: Boisson)
@@ -95,8 +95,8 @@ Class western.Dame{
 + seFaireLiberer(cowBoy: Cowboy)
 + estLibre(): ()boolean
 + sePresenter()
-+ getBoissonParDefaut(): Boisson
-+ setBoissonParDefaut(boisson: Boisson)
+{static} + getBoissonParDefaut(): Boisson
+{static} + setBoissonParDefaut(boisson: Boisson)
 + getRavisseur(): HorsLaLoi
 
 }
@@ -114,7 +114,7 @@ Class western.Histoire4{
 
 + <<create>> Histoire4()
 
-+ main(args: String[])
+{static} + main(args: String[])
 
 }
 
@@ -147,8 +147,8 @@ Class western.Personnage{
 + boire()
 + getNom(): String
 + getBoisson(): Boisson
-+ getPseudos(personnages: Nommable[*]): String
-+ getBoissonParDefaut(): Boisson
+{static} + getPseudos(personnages: Nommable[*]): String
+{static} + getBoissonParDefaut(): Boisson
 
 }
 western.Personnage -- western.Boisson
@@ -183,14 +183,14 @@ Class western.Substantif{
 + getNom(): String
 + getGenre(): Genre
 + toString(): String
-+ isVowel(c: char): (char)boolean
-+ startsWithVowel(s: String): String)boolean
+{static} + isVowel(c: char): (char)boolean
+{static} + startsWithVowel(s: String): String)boolean
 + getArticleIndefini(): String
 + avecArticleIndefini(): String
-+ getArticleDefini(genre: Genre): String
+{static} + getArticleDefini(genre: Genre): String
 + getArticleDefini(): String
 + avecArticleDefini(): String
-+ faireElision(article: String): String
+{static} + faireElision(article: String): String
 + elision(): ()boolean
 + getArticlePartitif(): String
 + avecArticlePartitif(): String

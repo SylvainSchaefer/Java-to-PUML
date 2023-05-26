@@ -7,10 +7,8 @@ hide empty members
 
 Class TD6.Scenario3.Boisson{
 
-+ Boisson(java.lang.String,TD6.Scenario3.Genre)(java.lang.String nom, TD6.Scenario3.Genre genre)
-
-+ getNom() : ()java.lang.String
-+ getGenre() : ()TD6.Scenario3.Genre
++ getNom(): String
++ getGenre(): Genre
 
 }
 TD6.Scenario3.Boisson -- TD6.Scenario3.Genre
@@ -19,21 +17,17 @@ TD6.Scenario3.Boisson -- TD6.Scenario3.Genre
 Class TD6.Scenario3.Brigand{
 - recompense
 
-+ Brigand(java.lang.String)(java.lang.String nom)
-+ Brigand(java.lang.String,TD6.Scenario3.Boisson)(java.lang.String nom, TD6.Scenario3.Boisson boisson)
-+ Brigand(java.lang.String,TD6.Scenario3.Boisson,java.lang.String)(java.lang.String nom, TD6.Scenario3.Boisson boisson, java.lang.String look)
-
-+ getLook() : ()java.lang.String
-+ setLook() : 
-+ getPseudonyme() : ()java.lang.String
-+ getStrRecompense() : ()java.lang.String
-+ getRecompense() : ()int
-+ getDames() : ()java.util.List<TD6.Scenario3.Dame>
-+ kidnapper() : 
-+ seFaireCapturer() : 
-+ isLibre() : ()java.lang.Boolean
-+ getCaptureur() : ()TD6.Scenario3.Cowboy
-+ sePresenter() : 
++ getLook(): String
++ setLook(look: String)
++ getPseudonyme(): String
++ getStrRecompense(): String
++ getRecompense(): ()int
++ getDames(): Dame[*]
++ kidnapper(dame: Dame)
++ seFaireCapturer(cowboy: Cowboy)
++ isLibre(): Boolean
++ getCaptureur(): Cowboy
++ sePresenter()
 
 }
 TD6.Scenario3.Brigand -- TD6.Scenario3.Cowboy
@@ -44,15 +38,12 @@ TD6.Scenario3.Brigand ---|> TD6.Scenario3.Personnage
 Class TD6.Scenario3.Cowboy{
 - somme
 
-+ Cowboy(java.lang.String)(java.lang.String nom)
-+ Cowboy(java.lang.String,TD6.Scenario3.Boisson)(java.lang.String nom, TD6.Scenario3.Boisson boisson)
-
-+ getPseudonyme() : ()java.lang.String
-+ getDamLibre() : ()java.util.List<TD6.Scenario3.Dame>
-+ tirerSur() : 
-+ capturer() : 
-+ getSomme() : ()int
-+ sePresenter() : 
++ getPseudonyme(): String
++ getDamLibre(): Dame[*]
++ tirerSur(brigand: HorsLaLoi)
++ capturer(horsLaLoi: HorsLaLoi)
++ getSomme(): ()int
++ sePresenter()
 
 }
 TD6.Scenario3.Cowboy - TD6.Scenario3.HorsLaLoi
@@ -61,15 +52,13 @@ TD6.Scenario3.Cowboy - TD6.Scenario3.Dame
 TD6.Scenario3.Cowboy ---|> TD6.Scenario3.Personnage
 Class TD6.Scenario3.Dame{
 
-+ Dame(java.lang.String)(java.lang.String nom)
-
-+ getPseudonyme() : ()java.lang.String
-+ isLibre() : ()java.lang.Boolean
-+ seFaireEnlever() : 
-+ seFaireLiberer() : 
-+ getSauveur() : ()TD6.Scenario3.Cowboy
-+ getEscroc() : ()TD6.Scenario3.HorsLaLoi
-+ sePresenter() : 
++ getPseudonyme(): String
++ isLibre(): Boolean
++ seFaireEnlever(horsLaLoi: HorsLaLoi)
++ seFaireLiberer(cowboy: Cowboy)
++ getSauveur(): Cowboy
++ getEscroc(): HorsLaLoi
++ sePresenter()
 
 }
 TD6.Scenario3.Dame -- java.lang.Boolean
@@ -84,18 +73,14 @@ FEMININ
 }
 Class TD6.Scenario3.Histoire3{
 
-+ Histoire3()()
-
-{static} + main() : 
+{static} + main(args: String[])
 
 }
 
 
 Class TD6.Scenario3.Histoire4{
 
-+ Histoire4()()
-
-{static} + main() : 
+{static} + main(args: String[])
 
 }
 
@@ -104,27 +89,22 @@ Interface TD6.Scenario3.HorsLaLoi<<interface>> {
 }
 Class TD6.Scenario3.Narrateur{
 
-+ Narrateur(java.lang.String)(java.lang.String nom)
-
-+ getPseudonyme() : ()java.lang.String
-+ boire() : 
++ getPseudonyme(): String
++ boire(boisson: Boisson)
 
 }
 
 TD6.Scenario3.Narrateur ---|> TD6.Scenario3.Personnage
 Class TD6.Scenario3.Personnage{
 
-+ Personnage(java.lang.String,TD6.Scenario3.Boisson)(java.lang.String nom, TD6.Scenario3.Boisson boisson)
-+ Personnage(java.lang.String)(java.lang.String nom)
-
-+ getNom() : ()java.lang.String
-+ getPrefere() : ()TD6.Scenario3.Boisson
-+ setPrefere() : 
-+ sePresenter() : 
-+ boire() : 
-+ dire() : 
-+ boire() : 
-abstract + getPseudonyme() : ()java.lang.String
++ getNom(): String
++ getPrefere(): Boisson
++ setPrefere(prefere: Boisson)
++ sePresenter()
++ boire(boisson: Boisson)
++ dire(phrase: String)
++ boire()
++ getPseudonyme(): String
 
 }
 TD6.Scenario3.Personnage -- TD6.Scenario3.Boisson
@@ -134,21 +114,17 @@ Class TD6.Scenario3.Ripou{
 - recompense
 - somme
 
-+ Ripou(java.lang.String)(java.lang.String nom)
-+ Ripou(java.lang.String,TD6.Scenario3.Boisson)(java.lang.String nom, TD6.Scenario3.Boisson boisson)
-+ Ripou(java.lang.String,TD6.Scenario3.Boisson,java.lang.String)(java.lang.String nom, TD6.Scenario3.Boisson boisson, java.lang.String look)
-
-+ getPseudonyme() : ()java.lang.String
-+ isLibre() : ()java.lang.Boolean
-+ getLook() : ()java.lang.String
-+ getRecompense() : ()int
-+ getStrRecompense() : ()java.lang.String
-+ getDames() : ()java.util.List<TD6.Scenario3.Dame>
-+ kidnapper() : 
-+ seFaireCapturer() : 
-+ getCaptureur() : ()TD6.Scenario3.Cowboy
-+ sePresenter() : 
-+ capturer() : 
++ getPseudonyme(): String
++ isLibre(): Boolean
++ getLook(): String
++ getRecompense(): ()int
++ getStrRecompense(): String
++ getDames(): Dame[*]
++ kidnapper(dame: Dame)
++ seFaireCapturer(cowboy: Cowboy)
++ getCaptureur(): Cowboy
++ sePresenter()
++ capturer(horsLaLoi: HorsLaLoi)
 
 }
 TD6.Scenario3.Ripou - TD6.Scenario3.Brigand
@@ -157,5 +133,167 @@ TD6.Scenario3.Ripou -- TD6.Scenario3.Cowboy
 TD6.Scenario3.Ripou -- java.lang.Boolean
 
 TD6.Scenario3.Ripou ---|> TD6.Scenario3.Cowboy
+@enduml
+
+@startuml
+'https://plantuml.com/class-diagram
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+Class TD6.Scenario3.Boisson{
+
++ <<create>> Boisson(nom: String, genre: Genre)
+
++ getNom(): String
++ getGenre(): Genre
+
+}
+TD6.Scenario3.Boisson -- TD6.Scenario3.Genre
+
+
+Class TD6.Scenario3.Brigand{
+- recompense
+
++ <<create>> Brigand(nom: String)
++ <<create>> Brigand(nom: String, boisson: Boisson)
++ <<create>> Brigand(nom: String, boisson: Boisson, look: String)
+
++ getLook(): String
++ setLook(look: String)
++ getPseudonyme(): String
++ getStrRecompense(): String
++ getRecompense(): ()int
++ getDames(): Dame[*]
++ kidnapper(dame: Dame)
++ seFaireCapturer(cowboy: Cowboy)
++ isLibre(): Boolean
++ getCaptureur(): Cowboy
++ sePresenter()
+
+}
+TD6.Scenario3.Brigand -- TD6.Scenario3.Cowboy
+TD6.Scenario3.Brigand -- java.lang.Boolean
+TD6.Scenario3.Brigand - TD6.Scenario3.Dame
+
+TD6.Scenario3.Brigand ---|> TD6.Scenario3.Personnage
+Class TD6.Scenario3.Cowboy{
+- somme
+
++ <<create>> Cowboy(nom: String)
++ <<create>> Cowboy(nom: String, boisson: Boisson)
+
++ getPseudonyme(): String
++ getDamLibre(): Dame[*]
++ tirerSur(brigand: HorsLaLoi)
++ capturer(horsLaLoi: HorsLaLoi)
++ getSomme(): ()int
++ sePresenter()
+
+}
+TD6.Scenario3.Cowboy - TD6.Scenario3.HorsLaLoi
+TD6.Scenario3.Cowboy - TD6.Scenario3.Dame
+
+TD6.Scenario3.Cowboy ---|> TD6.Scenario3.Personnage
+Class TD6.Scenario3.Dame{
+
++ <<create>> Dame(nom: String)
+
++ getPseudonyme(): String
++ isLibre(): Boolean
++ seFaireEnlever(horsLaLoi: HorsLaLoi)
++ seFaireLiberer(cowboy: Cowboy)
++ getSauveur(): Cowboy
++ getEscroc(): HorsLaLoi
++ sePresenter()
+
+}
+TD6.Scenario3.Dame -- java.lang.Boolean
+TD6.Scenario3.Dame -- TD6.Scenario3.Cowboy
+TD6.Scenario3.Dame -- TD6.Scenario3.HorsLaLoi
+
+TD6.Scenario3.Dame ---|> TD6.Scenario3.Personnage
+Enum TD6.Scenario3.Genre<<enum>> {
+MASCULIN
+FEMININ
+
+}
+Class TD6.Scenario3.Histoire3{
+
++ <<create>> Histoire3()
+
+{static} + main(args: String[])
+
+}
+
+
+Class TD6.Scenario3.Histoire4{
+
++ <<create>> Histoire4()
+
+{static} + main(args: String[])
+
+}
+
+
+Interface TD6.Scenario3.HorsLaLoi<<interface>> {
+}
+Class TD6.Scenario3.Narrateur{
+
++ <<create>> Narrateur(nom: String)
+
++ getPseudonyme(): String
++ boire(boisson: Boisson)
+
+}
+
+TD6.Scenario3.Narrateur ---|> TD6.Scenario3.Personnage
+Class TD6.Scenario3.Personnage{
+
++ <<create>> Personnage(nom: String, boisson: Boisson)
++ <<create>> Personnage(nom: String)
+
++ getNom(): String
++ getPrefere(): Boisson
++ setPrefere(prefere: Boisson)
++ sePresenter()
++ boire(boisson: Boisson)
++ dire(phrase: String)
++ boire()
++ getPseudonyme(): String
+
+}
+TD6.Scenario3.Personnage -- TD6.Scenario3.Boisson
+
+
+Class TD6.Scenario3.Ripou{
+- recompense
+- somme
+
++ <<create>> Ripou(nom: String)
++ <<create>> Ripou(nom: String, boisson: Boisson)
++ <<create>> Ripou(nom: String, boisson: Boisson, look: String)
+
++ getPseudonyme(): String
++ isLibre(): Boolean
++ getLook(): String
++ getRecompense(): ()int
++ getStrRecompense(): String
++ getDames(): Dame[*]
++ kidnapper(dame: Dame)
++ seFaireCapturer(cowboy: Cowboy)
++ getCaptureur(): Cowboy
++ sePresenter()
++ capturer(horsLaLoi: HorsLaLoi)
+
+}
+TD6.Scenario3.Ripou - TD6.Scenario3.Brigand
+TD6.Scenario3.Ripou - TD6.Scenario3.Dame
+TD6.Scenario3.Ripou -- TD6.Scenario3.Cowboy
+TD6.Scenario3.Ripou -- java.lang.Boolean
+
+TD6.Scenario3.Ripou ---|> TD6.Scenario3.Cowboy
+
 @enduml
 

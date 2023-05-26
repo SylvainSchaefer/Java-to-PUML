@@ -33,7 +33,8 @@ public class ClassPUML
                if (fieldType.getKind().isPrimitive())//VefrifPrimitif
                {
                    Visibility v = new Visibility(e);
-                   res += (v.getVisibility()+e.getSimpleName().toString()) + "\n";
+                   Type type = new Type(e);
+                   res += (v.getVisibility()+e.getSimpleName().toString()) + type.getType() + "\n";
                    //res+= this.getVisibility(e)+(e.getSimpleName().toString())+ ": " + fieldType + "\n";
                }
            }
