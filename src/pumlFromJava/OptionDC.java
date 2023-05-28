@@ -42,4 +42,13 @@ public class OptionDC implements Doclet.Option {
     {
         return this.typeDC;
     }
+
+    public boolean isDCA()
+    {
+        if(typeDC.compareTo("A") == 0)
+        {
+            return true;
+        }
+        return false;
+    }
 }

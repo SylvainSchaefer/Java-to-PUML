@@ -62,9 +62,9 @@ public class MethodeUML
         for (int i = 0; i < parameters.size(); i++) {
             VariableElement parameter = parameters.get(i);
             TypeMirror parameterType = parameter.asType();
-            builder.append(parameterType.toString());
-            builder.append(" ");
             builder.append(parameter.getSimpleName().toString());
+            Type type = new Type(parameterType);
+            builder.append(type.getType());
 
             if (i < parameters.size() - 1) {
                 builder.append(", ");
@@ -76,8 +76,8 @@ public class MethodeUML
         // Type de retour
         TypeMirror returnType = methodElement.getReturnType();
         if (!returnType.toString().equals("void")) {
-            builder.append(" : ");
-            builder.append(returnType.toString());
+            Type type = new Type(returnType);
+            builder.append(type.getType());
         }
 
         return builder.toString();

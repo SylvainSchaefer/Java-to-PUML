@@ -56,7 +56,7 @@ public class ClassPUML extends GeneralClassUML
                if (fieldType.getKind().isPrimitive())//VefrifPrimitif
                {
                    Visibility v = new Visibility(e);
-                   Type type = new Type(e);
+                   Type type = new Type(e.asType());
                    res += (v.getVisibility()+e.getSimpleName().toString()) + type.getType() + "\n";
                    //res+= this.getVisibility(e)+(e.getSimpleName().toString())+ ": " + fieldType + "\n";
                }
@@ -153,7 +153,7 @@ public class ClassPUML extends GeneralClassUML
                 res += v.getVisibility();
 
                 xEl = (ExecutableElement) e;
-                Type type = new Type(xEl);
+                Type type = new Type(xEl.asType());
                 Parameter parameter = new Parameter(xEl);
                 res += e.getSimpleName() + "("+ parameter.getParametersUML() + ")";
 

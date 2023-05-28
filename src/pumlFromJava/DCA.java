@@ -4,10 +4,10 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import java.util.ArrayList;
 
-public class DCC implements DC{
+public class DCA implements DC{
     private ArrayList<Element> classes;
 
-    public DCC(ArrayList<Element> Xcl)
+    public DCA(ArrayList<Element> Xcl)
     {
         classes = Xcl;
     }
@@ -28,7 +28,7 @@ public class DCC implements DC{
 
     public String getUML()
     {
-        String uml = "";
+        String uml = "'''DCA + \n";
         for (Element e : classes) {
             if(e.getKind() == ElementKind.CLASS)
             {

@@ -20,7 +20,7 @@ public class Parameter
         for (int i = 0; i < parameters.size(); i++)
         {
             Element parameter = parameters.get(i);
-            Type type = new Type(parameter);
+            Type type = new Type(parameter.asType());
             res+= parameter.getSimpleName() + type.getType();
 
 
