@@ -44,4 +44,14 @@ public class FieldUML
 
         return builder.toString();
     }
+
+
+    public String toStringDCA() {
+        StringBuilder builder = new StringBuilder();
+
+        // Nom du champ
+        builder.append(getName());
+
+        return builder.toString();
+    }
 }
