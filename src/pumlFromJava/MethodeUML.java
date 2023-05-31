@@ -44,14 +44,8 @@ public class MethodeUML
         StringBuilder builder = new StringBuilder();
 
         // Modificateurs
-        if (isAbstract()) {
-            builder.append("abstract ");
-        }
-        if (isStatic()) {
-            builder.append("static ");
-        }
-        builder.append(methodElement.getModifiers().toString());
-        builder.append(" ");
+        ModifierPUML modifierPUML = new ModifierPUML((Element) methodElement);
+        builder.append(modifierPUML.getModifier());
 
         // Nom de la méthode
         builder.append(getName());

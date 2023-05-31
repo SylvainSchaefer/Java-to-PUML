@@ -24,7 +24,8 @@ public class FieldUML
 
     public String getType() {
         TypeMirror fieldType = fieldElement.asType();
-        return fieldType.toString();
+        Type type = new Type(fieldType);
+        return type.getType();
     }
 
     public boolean isPrimitive() {
@@ -37,12 +38,11 @@ public class FieldUML
         StringBuilder builder = new StringBuilder();
 
         // Modifier
-        builder.append(fieldElement.getModifiers().toString());
-        builder.append(" ");
+        ModifierPUML modifierPUML = new ModifierPUML((Element) fieldElement);
+        builder.append(modifierPUML.getModifier());
 
         // Nom du champ
         builder.append(getName());
-        builder.append(" : ");
 
         // Type du champ
         builder.append(getType());

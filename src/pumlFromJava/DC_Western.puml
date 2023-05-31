@@ -7,14 +7,14 @@ hide empty members
 
 '''DCA + 
 Class western.Boisson{
-[private, final] substantif : western.Substantif
-[public, static, final] EAU : western.Boisson
-[public] getNom(): String
-[public] getGenre(): Genre
-[public] getNomAvecArticleIndefini(): String
-[public] getNomAvecArticlePartitif(): String
-[public] getNomAvecArticleDefini(): String
-[public] getNomAvecPreposition(preposition: String): String
+{read only} - substantif: Substantif
+{static} + EAU: Boisson
++ getNom(): String
++ getGenre(): Genre
++ getNomAvecArticleIndefini(): String
++ getNomAvecArticlePartitif(): String
++ getNomAvecArticleDefini(): String
++ getNomAvecPreposition(preposition: String): String
 
 }
 western.Boisson -- western.Substantif
@@ -22,24 +22,24 @@ western.Boisson -- western.Boisson
 
 
 Class western.Brigand{
-[protected, static] LOOK_PAR_DEFAUT : java.lang.String
-[private] look : java.lang.String
-[private] recompense : int
-[private] estLibre : boolean
-[private] captives : java.util.List<western.Dame>
-[private] gardien : western.Cowboy
-[public] getLook(): String
-[public] getRecompense(): int
-[public] estLibre(): boolean
-[public] kidnapper(dame: Dame)
-[public] seFaireCapturer(cowBoy: Cowboy)
-[public] seFaireTirerDessus(cowBoy: Cowboy)
-[public] getPseudo(): String
-[public] getCaptives(): Dame[*]
-[public] sePresenter()
-[private, static] boissonParDefaut : western.Boisson
-static [public, static] getBoissonParDefaut(): Boisson
-static [public, static] setBoissonParDefaut(boisson: Boisson)
+{static} # LOOK_PAR_DEFAUT: String
+- look: String
+- recompense: int
+- estLibre: boolean
+- captives: Dame[*]
+- gardien: Cowboy
++ getLook(): String
++ getRecompense(): int
++ estLibre(): boolean
++ kidnapper(dame: Dame)
++ seFaireCapturer(cowBoy: Cowboy)
++ seFaireTirerDessus(cowBoy: Cowboy)
++ getPseudo(): String
++ getCaptives(): Dame[*]
++ sePresenter()
+{static} - boissonParDefaut: Boisson
+{static} + getBoissonParDefaut(): Boisson
+{static} + setBoissonParDefaut(boisson: Boisson)
 
 }
 western.Brigand - western.Dame
@@ -48,31 +48,31 @@ western.Brigand -- western.Boisson
 
 western.Brigand ---|> western.Personnage
 Class western.CasDeTestStandard{
-static [public, static] beforeAll()
-[public] beforeEach()
-[public] testMethod1()
-[public] testMethod2()
-[public] testMethod3()
-[public] testMethod4()
-[public] testMethod5()
-[public] afterEach()
-static [public, static] afterAll()
+{static} + beforeAll()
++ beforeEach()
++ testMethod1()
++ testMethod2()
++ testMethod3()
++ testMethod4()
++ testMethod5()
++ afterEach()
+{static} + afterAll()
 
 }
 
 
 Class western.Cowboy{
-[private] gains : int
-[private] captures : java.util.Set<western.HorsLaLoi>
-[public] getPseudo(): String
-[public] liberer(dame: Dame)
-[public] liberer(captives: Dame[*])
-[public] capturer(horsLaLoi: HorsLaLoi)
-[public] tirerSur(brigand: HorsLaLoi)
-[public] sePresenter()
-[private, static] boissonParDefaut : western.Boisson
-static [public, static] getBoissonParDefaut(): Boisson
-static [public, static] setBoissonParDefaut(boisson: Boisson)
+- gains: int
+- captures: HorsLaLoi[*]
++ getPseudo(): String
++ liberer(dame: Dame)
++ liberer(captives: Dame[*])
++ capturer(horsLaLoi: HorsLaLoi)
++ tirerSur(brigand: HorsLaLoi)
++ sePresenter()
+{static} - boissonParDefaut: Boisson
+{static} + getBoissonParDefaut(): Boisson
+{static} + setBoissonParDefaut(boisson: Boisson)
 
 }
 western.Cowboy - western.HorsLaLoi
@@ -80,18 +80,18 @@ western.Cowboy -- western.Boisson
 
 western.Cowboy ---|> western.Personnage
 Class western.Dame{
-[private] estLibre : boolean
-[private] sauveur : western.Cowboy
-[private] ravisseur : western.HorsLaLoi
-[public] getPseudo(): String
-[public] seFaireKidnapper(horsLaLoi: HorsLaLoi)
-[public] seFaireLiberer(cowBoy: Cowboy)
-[public] estLibre(): boolean
-[public] sePresenter()
-[private, static] boissonParDefaut : western.Boisson
-static [public, static] getBoissonParDefaut(): Boisson
-static [public, static] setBoissonParDefaut(boisson: Boisson)
-[public] getRavisseur(): HorsLaLoi
+- estLibre: boolean
+- sauveur: Cowboy
+- ravisseur: HorsLaLoi
++ getPseudo(): String
++ seFaireKidnapper(horsLaLoi: HorsLaLoi)
++ seFaireLiberer(cowBoy: Cowboy)
++ estLibre(): boolean
++ sePresenter()
+{static} - boissonParDefaut: Boisson
+{static} + getBoissonParDefaut(): Boisson
+{static} + setBoissonParDefaut(boisson: Boisson)
++ getRavisseur(): HorsLaLoi
 
 }
 western.Dame -- western.Cowboy
@@ -105,7 +105,7 @@ MASCULIN
 
 }
 Class western.Histoire4{
-static [public, static] main(args: String[])
+{static} + main(args: String[])
 
 }
 
@@ -113,10 +113,10 @@ static [public, static] main(args: String[])
 Interface western.HorsLaLoi<<interface>> {
 }
 Class western.Narrateur{
-[public] dire(texte: String)
-[public] boire(boisson: Boisson)
-[public] boire()
-[public] getPseudo(): String
++ dire(texte: String)
++ boire(boisson: Boisson)
++ boire()
++ getPseudo(): String
 
 }
 
@@ -124,17 +124,17 @@ western.Narrateur ---|> western.Personnage
 Interface western.Nommable<<interface>> {
 }
 Class western.Personnage{
-[private, static] BOISSON_PAR_DEFAUT : western.Boisson
-[private] nom : java.lang.String
-[private] boisson : western.Boisson
-[public] dire(texte: String)
-[public] sePresenter()
-[public] boire(boisson: Boisson)
-[public] boire()
-[public] getNom(): String
-[public] getBoisson(): Boisson
-static [public, static] getPseudos(personnages: Nommable[*]): String
-static [public, static] getBoissonParDefaut(): Boisson
+{static} - BOISSON_PAR_DEFAUT: Boisson
+- nom: String
+- boisson: Boisson
++ dire(texte: String)
++ sePresenter()
++ boire(boisson: Boisson)
++ boire()
++ getNom(): String
++ getBoisson(): Boisson
+{static} + getPseudos(personnages: Nommable[*]): String
+{static} + getBoissonParDefaut(): Boisson
 
 }
 western.Personnage -- western.Boisson
@@ -142,41 +142,41 @@ western.Personnage -- western.Boisson
 
 
 Class western.Ripou{
-[private] brigand : western.Brigand
-[public] getLook(): String
-[public] estLibre(): boolean
-[public] getRecompense(): int
-[public] kidnapper(dame: Dame)
-[public] getCaptives(): Dame[*]
-[public] seFaireCapturer(cowBoy: Cowboy)
-[public] seFaireTirerDessus(cowBoy: Cowboy)
-[public] getPseudo(): String
-[public] sePresenter()
-[public] liberer(dame: Dame)
+- brigand: Brigand
++ getLook(): String
++ estLibre(): boolean
++ getRecompense(): int
++ kidnapper(dame: Dame)
++ getCaptives(): Dame[*]
++ seFaireCapturer(cowBoy: Cowboy)
++ seFaireTirerDessus(cowBoy: Cowboy)
++ getPseudo(): String
++ sePresenter()
++ liberer(dame: Dame)
 
 }
 western.Ripou -- western.Brigand
 
 western.Ripou ---|> western.Cowboy
 Class western.Substantif{
-[private] nom : java.lang.String
-[private] genre : western.Genre
-[public] getNom(): String
-[public] getGenre(): Genre
-[public] toString(): String
-static [public, static] isVowel(c: char): boolean
-static [public, static] startsWithVowel(s: String): boolean
-[public] getArticleIndefini(): String
-[public] avecArticleIndefini(): String
-static [public, static] getArticleDefini(genre: Genre): String
-[public] getArticleDefini(): String
-[public] avecArticleDefini(): String
-static [public, static] faireElision(article: String): String
-[public] elision(): boolean
-[public] getArticlePartitif(): String
-[public] avecArticlePartitif(): String
-[public] avecElision(article: String): String
-[public] avecPreposition(preposition: String): String
+- nom: String
+- genre: Genre
++ getNom(): String
++ getGenre(): Genre
++ toString(): String
+{static} + isVowel(c: char): boolean
+{static} + startsWithVowel(s: String): boolean
++ getArticleIndefini(): String
++ avecArticleIndefini(): String
+{static} + getArticleDefini(genre: Genre): String
++ getArticleDefini(): String
++ avecArticleDefini(): String
+{static} + faireElision(article: String): String
++ elision(): boolean
++ getArticlePartitif(): String
++ avecArticlePartitif(): String
++ avecElision(article: String): String
++ avecPreposition(preposition: String): String
 
 }
 western.Substantif -- western.Genre
