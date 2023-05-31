@@ -87,8 +87,9 @@ public class PumlDoclet implements Doclet {
         }
         fichier.createNewFile();
 
+        PrintWriter writer = null;
         try {
-            PrintWriter writer = new PrintWriter(fichier);
+            writer = new PrintWriter(fichier);
 
             if(optionDC != null)
             {
@@ -98,7 +99,14 @@ public class PumlDoclet implements Doclet {
                     writer.println(dca.getEn_tete());
                     writer.println(dca.getUML());
                     writer.println(dca.getFin());
-                    writer.close();
+                    //writer.close();
+                }
+                else
+                {
+                    DCC dcc = new DCC(classes);
+                    writer.println(dcc.getEn_tete());
+                    writer.println(dcc.getUML());
+                    writer.println(DCC.getFin());
                 }
             }
 
@@ -108,11 +116,19 @@ public class PumlDoclet implements Doclet {
                 writer.println(dcc.getEn_tete());
                 writer.println(dcc.getUML());
                 writer.println(DCC.getFin());
-                writer.close();
+                //writer.close();
             }
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        finally
+        {
+            if (writer != null)
+            {
+                writer.close();
+            }
+
         }
     }
 
