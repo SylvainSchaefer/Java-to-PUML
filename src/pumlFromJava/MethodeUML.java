@@ -39,51 +39,13 @@ public class MethodeUML
         return methodElement.getModifiers().contains(Modifier.STATIC);
     }
 
-    public boolean isPublic() {
-        return methodElement.getModifiers().contains(Modifier.PUBLIC);
-    }
-
-    public boolean isPrivate() {
-        return methodElement.getModifiers().contains(Modifier.PRIVATE);
-    }
-
-    public boolean isFinale() {
-        return methodElement.getModifiers().contains(Modifier.FINAL);
-    }
-
-    public boolean isProtected() {
-        return methodElement.getModifiers().contains(Modifier.PROTECTED);
-    }
-
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
         // Modificateurs
-        if (isAbstract()) {
-            builder.append("{abstract} ");
-        }
-        if (isStatic()) {
-            builder.append("{static} ");
-        }
-        if (isFinale()) {
-            builder.append("{read only} ");
-        }
-        if (isPublic()) {
-            builder.append("+");
-        }
-        if (isPrivate()) {
-            builder.append("-");
-        }
-        if(isProtected())
-        {
-            builder.append("#");
-        }
-
-
-
-        builder.append(methodElement.getModifiers().toString());
-        builder.append(" ");
+        ModifierPUML modifierPUML = new ModifierPUML((Element) methodElement);
+        builder.append(modifierPUML.getModifier());
 
         // Nom de la méthode
         builder.append(getName());

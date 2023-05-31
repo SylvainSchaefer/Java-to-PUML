@@ -6,18 +6,30 @@ import javax.lang.model.type.TypeMirror;
 
 public class ModifierPUML
 {
-    private Element el;
+    private Element element;
 
     public ModifierPUML(Element xel)
     {
-        this.el = xel;
+        this.element = xel;
     }
 
-    private String getVisibility(Element element)
+    public String getModifier()
     {
         String res = "";
 
         String modifier = element.getModifiers().toString().toLowerCase();
+        if (modifier.contains("static"))
+        {
+            res+= "{static} ";
+        }
+        else if (modifier.contains("final"))
+        {
+            res+= "{read only} ";
+        }
+        /*else if (modifier.contains("abstract"))
+        {
+            res+= "abstract ";
+        }*/
         if (modifier.contains("public"))
         {
             res+= "+ ";
