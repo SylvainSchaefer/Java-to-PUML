@@ -75,22 +75,24 @@ public class ClassPUML extends GeneralClassUML
         {
             if (e.getKind() == ElementKind.FIELD)
             {
-                if (!isPrimitive(e) && isInternal(e.asType()))
+                if (!isPrimitive(e)) //&& isInternal(e.asType()))
                 {
                     TypeMirror fieldType = e.asType();
-                    if (fieldType instanceof DeclaredType)
+                    if (fieldType.getKind() == TypeKind.DECLARED)
                     {
                         DeclaredType declaredType = (DeclaredType) fieldType;
                         List<? extends TypeMirror> typeArguments = declaredType.getTypeArguments();
+
+                        FieldUML fieldUML = new FieldUML(e);
                         if (!typeArguments.isEmpty())
                         {
                             TypeMirror typeArgument = typeArguments.get(0);
                             String className = typeArgument.toString();
-                            res += (getElement().toString() + " o-- " + className) + "\n";
+                            res += (getElement().toString() + " o--- " + '"' + fieldUML.getName() + '"' + className) + "\n";
                         }
-                        else
+                        else if(isInternal(e.asType()))
                         {
-                            res += (getElement().toString() + " -- " + fieldType.toString()) + "\n";
+                            res += (getElement().toString() + " o-- " + '"' + fieldUML.getName() + '"' + fieldType.toString()) + "\n";
                         }
                     }
                 }
