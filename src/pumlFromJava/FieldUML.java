@@ -54,8 +54,12 @@ public class FieldUML
     public String toStringDCA() {
         StringBuilder builder = new StringBuilder();
 
-        // Nom du champ
-        builder.append(getName());
+        if(fieldElement.asType().getKind() != TypeKind.DECLARED)
+        {
+            // Nom du champ
+            builder.append(getName());
+        }
+
 
         return builder.toString();
     }
