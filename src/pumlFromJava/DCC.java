@@ -33,21 +33,23 @@ public class DCC implements DC{
             if(e.getKind() == ElementKind.CLASS)
             {
                 ClassPUML c = new ClassPUML(e);
-                SuperClasseUML sup = new SuperClasseUML(e);
+                //SuperClasseUML sup = new SuperClasseUML(e);
 
                 uml += (c.getNomClasse())+ "\n";
                 uml += (c.getBody())+ "\n";
                 uml += (c.getEnd()+ "\n");
                 uml += (c.getAssociations()+ "\n");
 
-                uml += (sup.getSuperClassName()+ "\n");
+                uml += (c.getSuperClassName()+ "\n");
 
             }
             else if(e.getKind() == ElementKind.INTERFACE) {
 
                 InterfacePUML i = new InterfacePUML(e);
                 uml += (i.getNomClasse()+ "\n");
+                uml += (i.getBody())+ "\n";
                 uml += (i.getEnd())+ "\n";
+                uml += (i.getSuperInterfacesName()+ "\n");
             }
             else if (e.getKind() == ElementKind.ENUM)
             {

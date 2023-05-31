@@ -110,6 +110,26 @@ public class ClassPUML extends GeneralClassUML
         return true;
     }
 
+    public String getSuperClassName()
+    {
+
+
+
+
+        TypeElement typeElement = (TypeElement) this.getElement();
+        TypeMirror superClasse = typeElement.getSuperclass();
+
+
+        if(isInternal(superClasse))
+        {
+
+            return getElement().toString() +" ---|> "+superClasse.toString();
+        }
+
+        return "";
+
+    }
+
 
     public String getEnd()
     {
