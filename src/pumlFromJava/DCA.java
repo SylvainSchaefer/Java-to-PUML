@@ -33,7 +33,7 @@ public class DCA implements DC{
             if(e.getKind() == ElementKind.CLASS)
             {
                 ClassPUML c = new ClassPUML(e);
-                SuperClasseUML sup = new SuperClasseUML(e);
+
 
                 uml += (c.getNomClasse())+ "\n";
                 uml += (c.getBody())+ "\n";
@@ -43,7 +43,7 @@ public class DCA implements DC{
                 uml += (c.getEnd()+ "\n");
                 uml += (c.getAssociations()+ "\n");
 
-                uml += (sup.getSuperClassName()+ "\n");
+                uml += (c.getSuperClassName()+ "\n");
 
             }
             else if(e.getKind() == ElementKind.INTERFACE) {
@@ -51,6 +51,7 @@ public class DCA implements DC{
                 InterfacePUML i = new InterfacePUML(e);
                 uml += (i.getNomClasse()+ "\n");
                 uml += (i.getEnd())+ "\n";
+                uml += (i.getSuperInterfacesName()+ "\n");
             }
             else if (e.getKind() == ElementKind.ENUM)
             {

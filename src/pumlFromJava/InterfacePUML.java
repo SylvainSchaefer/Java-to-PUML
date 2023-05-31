@@ -1,6 +1,10 @@
 package pumlFromJava;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.TypeMirror;
+import java.util.List;
 
 public class InterfacePUML extends GeneralClassUML
 {
@@ -20,6 +24,47 @@ public class InterfacePUML extends GeneralClassUML
     @Override
     public String getBody()
     {
-        return ""; // Les interfaces n'ont pas de corps dans un diagramme de classe
+        String res = "";
+
+        for (Element enclosedElement : getElement().getEnclosedElements())
+        {
+
+            if (enclosedElement.getKind() == ElementKind.METHOD)
+            {
+                MethodeUML method = new MethodeUML(enclosedElement);
+                res += method.toString() + "\n";
+            }
+        }
+
+        return res;
+    }
+
+    public String getSuperInterfacesName()
+    {
+
+        String res = "";
+
+
+        TypeElement typeElement = (TypeElement) this.getElement();
+
+        List<? extends TypeMirror> superInterfac = typeElement.getInterfaces();
+
+
+        for ( TypeMirror el : superInterfac)
+        {
+            if(isInternal(el))
+            {
+
+                res+= getElement().toString() +" ---|> "+el.toString()+"\n";
+            }
+        }
+
+
+
+
+        return res;
+
+
+
     }
 }

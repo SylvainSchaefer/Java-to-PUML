@@ -15,6 +15,8 @@ public abstract class GeneralClassUML
 
     public abstract String getNomClasse();
 
+
+
     public String getEnd()
     {
         return "}";
