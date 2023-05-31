@@ -2,6 +2,7 @@ package pumlFromJava;
 
 import javax.lang.model.element.*;
 import javax.lang.model.type.DeclaredType;
+import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 import java.util.*;
 
@@ -86,7 +87,7 @@ public class ClassPUML extends GeneralClassUML
                         {
                             TypeMirror typeArgument = typeArguments.get(0);
                             String className = typeArgument.toString();
-                            res += (getElement().toString() + " - " + className) + "\n";
+                            res += (getElement().toString() + " o-- " + className) + "\n";
                         }
                         else
                         {

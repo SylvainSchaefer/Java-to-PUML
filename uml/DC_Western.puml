@@ -39,8 +39,6 @@ Class TD6.Scenario3.Brigand{
 
 }
 TD6.Scenario3.Brigand -- TD6.Scenario3.Cowboy
-TD6.Scenario3.Brigand -- java.lang.Boolean
-TD6.Scenario3.Brigand - TD6.Scenario3.Dame
 
 TD6.Scenario3.Brigand ---|> TD6.Scenario3.Personnage
 Class TD6.Scenario3.Cowboy{
@@ -57,8 +55,6 @@ Class TD6.Scenario3.Cowboy{
 + sePresenter()
 
 }
-TD6.Scenario3.Cowboy - TD6.Scenario3.HorsLaLoi
-TD6.Scenario3.Cowboy - TD6.Scenario3.Dame
 
 TD6.Scenario3.Cowboy ---|> TD6.Scenario3.Personnage
 Class TD6.Scenario3.Dame{
@@ -75,7 +71,6 @@ Class TD6.Scenario3.Dame{
 + sePresenter()
 
 }
-TD6.Scenario3.Dame -- java.lang.Boolean
 TD6.Scenario3.Dame -- TD6.Scenario3.Cowboy
 TD6.Scenario3.Dame -- TD6.Scenario3.HorsLaLoi
 
@@ -100,7 +95,24 @@ Class TD6.Scenario3.Histoire4{
 
 
 Interface TD6.Scenario3.HorsLaLoi<<interface>> {
+{abstract} + getPseudonyme(): String
+{abstract} + getLook(): String
+{abstract} + getDames(): Dame[*]
+{abstract} + kidnapper(dame: Dame)
+{abstract} + seFaireCapturer(cowboy: Cowboy)
+{abstract} + getRecompense(): int
+{abstract} + isLibre(): Boolean
+{abstract} + getCaptureur(): Cowboy
+{abstract} + sePresenter()
+{abstract} + dire(phrase: String)
+
 }
+
+Interface TD6.Scenario3.ITest<<interface>> {
+
+}
+TD6.Scenario3.ITest ---|> TD6.Scenario3.HorsLaLoi
+
 Class TD6.Scenario3.Narrateur{
 + <<create>> Narrateur(nom: String)
 + getPseudonyme(): String
@@ -121,7 +133,7 @@ Class TD6.Scenario3.Personnage{
 + boire(boisson: Boisson)
 + dire(phrase: String)
 + boire()
-abstract + getPseudonyme(): String
+{abstract} + getPseudonyme(): String
 
 }
 TD6.Scenario3.Personnage -- TD6.Scenario3.Boisson
@@ -151,10 +163,7 @@ Class TD6.Scenario3.Ripou{
 + capturer(horsLaLoi: HorsLaLoi)
 
 }
-TD6.Scenario3.Ripou - TD6.Scenario3.Brigand
-TD6.Scenario3.Ripou - TD6.Scenario3.Dame
 TD6.Scenario3.Ripou -- TD6.Scenario3.Cowboy
-TD6.Scenario3.Ripou -- java.lang.Boolean
 
 TD6.Scenario3.Ripou ---|> TD6.Scenario3.Cowboy
 

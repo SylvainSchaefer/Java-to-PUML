@@ -11,9 +11,7 @@ public class FieldUML
 
     public FieldUML(Element element)
     {
-        /*if (element.getKind() != ElementKind.FIELD) {
-            throw new IllegalArgumentException("L'element n'est pas un argument");
-        }*/
+
         this.fieldElement = (VariableElement) element;
     }
 
@@ -26,10 +24,12 @@ public class FieldUML
         TypeMirror fieldType = fieldElement.asType();
         Type type = new Type(fieldType);
         return type.getType();
+
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         StringBuilder builder = new StringBuilder();
 
         // Modifier
@@ -45,3 +45,5 @@ public class FieldUML
         return builder.toString();
     }
 }
+// Type declaré = agregation
+// SWITCH DS getField pour les primitif UML int,byte , short --> Integer etc..
