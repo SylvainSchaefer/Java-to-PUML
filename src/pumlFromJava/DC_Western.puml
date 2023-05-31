@@ -7,8 +7,8 @@ hide empty members
 
 Class western.Boisson{
 + <<create>> Boisson(nom: String[*], genre: Genre[*])
-{read only} - substantif: Substantif[*]
-{static} + EAU: Boisson[*]
+
+
 + getNom(): String[*]
 + getGenre(): Genre[*]
 + getNomAvecArticleIndefini(): String[*]
@@ -25,12 +25,12 @@ Class western.Brigand{
 + <<create>> Brigand(nom: String[*])
 + <<create>> Brigand(nom: String[*], boisson: Boisson[*])
 + <<create>> Brigand(nom: String[*], boisson: Boisson[*], look: String[*])
-{static} # LOOK_PAR_DEFAUT: String[*]
-- look: String[*]
+
+
 - recompense: Integer
 - estLibre: Boolean
-- captives: List[*]
-- gardien: Cowboy[*]
+
+
 + getLook(): String[*]
 + getRecompense(): Integer
 + estLibre(): Boolean
@@ -40,7 +40,7 @@ Class western.Brigand{
 + getPseudo(): String[*]
 + getCaptives(): List[*]
 + sePresenter()
-{static} - boissonParDefaut: Boisson[*]
+
 {static} + getBoissonParDefaut(): Boisson[*]
 {static} + setBoissonParDefaut(boisson: Boisson[*])
 
@@ -68,14 +68,14 @@ Class western.Cowboy{
 + <<create>> Cowboy(nom: String[*])
 + <<create>> Cowboy(nom: String[*], boisson: Boisson[*])
 - gains: Integer
-- captures: Set[*]
+
 + getPseudo(): String[*]
 + liberer(dame: Dame[*])
 + liberer(captives: List[*])
 + capturer(horsLaLoi: HorsLaLoi[*])
 + tirerSur(brigand: HorsLaLoi[*])
 + sePresenter()
-{static} - boissonParDefaut: Boisson[*]
+
 {static} + getBoissonParDefaut(): Boisson[*]
 {static} + setBoissonParDefaut(boisson: Boisson[*])
 
@@ -87,14 +87,14 @@ Class western.Dame{
 + <<create>> Dame(nom: String[*])
 + <<create>> Dame(nom: String[*], boisson: Boisson[*])
 - estLibre: Boolean
-- sauveur: Cowboy[*]
-- ravisseur: HorsLaLoi[*]
+
+
 + getPseudo(): String[*]
 + seFaireKidnapper(horsLaLoi: HorsLaLoi[*])
 + seFaireLiberer(cowBoy: Cowboy[*])
 + estLibre(): Boolean
 + sePresenter()
-{static} - boissonParDefaut: Boisson[*]
+
 {static} + getBoissonParDefaut(): Boisson[*]
 {static} + setBoissonParDefaut(boisson: Boisson[*])
 + getRavisseur(): HorsLaLoi[*]
@@ -149,9 +149,9 @@ Interface western.Nommable<<interface>> {
 Class western.Personnage{
 + <<create>> Personnage(nom: String[*])
 + <<create>> Personnage(nom: String[*], boisson: Boisson[*])
-{static} - BOISSON_PAR_DEFAUT: Boisson[*]
-- nom: String[*]
-- boisson: Boisson[*]
+
+
+
 + dire(texte: String[*])
 + sePresenter()
 + boire(boisson: Boisson[*])
@@ -170,7 +170,7 @@ Class western.Ripou{
 + <<create>> Ripou(nom: String[*])
 + <<create>> Ripou(nom: String[*], boisson: Boisson[*])
 + <<create>> Ripou(nom: String[*], boisson: Boisson[*], look: String[*])
-- brigand: Brigand[*]
+
 + getLook(): String[*]
 + estLibre(): Boolean
 + getRecompense(): Integer
@@ -188,8 +188,8 @@ western.Ripou -- western.Brigand
 western.Ripou ---|> western.Cowboy
 Class western.Substantif{
 + <<create>> Substantif(nom: String[*], genre: Genre[*])
-- nom: String[*]
-- genre: Genre[*]
+
+
 + getNom(): String[*]
 + getGenre(): Genre[*]
 + toString(): String[*]
