@@ -90,15 +90,18 @@ public class PumlDoclet implements Doclet {
         try {
             PrintWriter writer = new PrintWriter(fichier);
 
-
-            if(optionDC.isDCA())
+            if(optionDC != null)
             {
-                DCA dca = new DCA(classes);
-                writer.println(dca.getEn_tete());
-                writer.println(dca.getUML());
-                writer.println(dca.getFin());
-                writer.close();
+                if(optionDC.isDCA())
+                {
+                    DCA dca = new DCA(classes);
+                    writer.println(dca.getEn_tete());
+                    writer.println(dca.getUML());
+                    writer.println(dca.getFin());
+                    writer.close();
+                }
             }
+
             else
             {
                 DCC dcc = new DCC(classes);
