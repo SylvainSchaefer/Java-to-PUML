@@ -7,6 +7,7 @@ hide empty members
 
 '''DCA + 
 Class western.Boisson{
++ <<create>> Boisson(nom: String, genre: Genre)
 {read only} - substantif: Substantif
 {static} + EAU: Boisson
 + getNom(): String
@@ -22,6 +23,9 @@ western.Boisson -- western.Boisson
 
 
 Class western.Brigand{
++ <<create>> Brigand(nom: String)
++ <<create>> Brigand(nom: String, boisson: Boisson)
++ <<create>> Brigand(nom: String, boisson: Boisson, look: String)
 {static} # LOOK_PAR_DEFAUT: String
 - look: String
 - recompense: int
@@ -48,6 +52,7 @@ western.Brigand -- western.Boisson
 
 western.Brigand ---|> western.Personnage
 Class western.CasDeTestStandard{
++ <<create>> CasDeTestStandard()
 {static} + beforeAll()
 + beforeEach()
 + testMethod1()
@@ -62,6 +67,8 @@ Class western.CasDeTestStandard{
 
 
 Class western.Cowboy{
++ <<create>> Cowboy(nom: String)
++ <<create>> Cowboy(nom: String, boisson: Boisson)
 - gains: int
 - captures: HorsLaLoi[*]
 + getPseudo(): String
@@ -80,6 +87,8 @@ western.Cowboy -- western.Boisson
 
 western.Cowboy ---|> western.Personnage
 Class western.Dame{
++ <<create>> Dame(nom: String)
++ <<create>> Dame(nom: String, boisson: Boisson)
 - estLibre: boolean
 - sauveur: Cowboy
 - ravisseur: HorsLaLoi
@@ -105,6 +114,7 @@ MASCULIN
 
 }
 Class western.Histoire4{
++ <<create>> Histoire4()
 {static} + main(args: String[])
 
 }
@@ -113,6 +123,8 @@ Class western.Histoire4{
 Interface western.HorsLaLoi<<interface>> {
 }
 Class western.Narrateur{
++ <<create>> Narrateur()
++ <<create>> Narrateur(nom: String)
 + dire(texte: String)
 + boire(boisson: Boisson)
 + boire()
@@ -124,6 +136,8 @@ western.Narrateur ---|> western.Personnage
 Interface western.Nommable<<interface>> {
 }
 Class western.Personnage{
++ <<create>> Personnage(nom: String)
++ <<create>> Personnage(nom: String, boisson: Boisson)
 {static} - BOISSON_PAR_DEFAUT: Boisson
 - nom: String
 - boisson: Boisson
@@ -142,6 +156,9 @@ western.Personnage -- western.Boisson
 
 
 Class western.Ripou{
++ <<create>> Ripou(nom: String)
++ <<create>> Ripou(nom: String, boisson: Boisson)
++ <<create>> Ripou(nom: String, boisson: Boisson, look: String)
 - brigand: Brigand
 + getLook(): String
 + estLibre(): boolean
@@ -159,6 +176,7 @@ western.Ripou -- western.Brigand
 
 western.Ripou ---|> western.Cowboy
 Class western.Substantif{
++ <<create>> Substantif(nom: String, genre: Genre)
 - nom: String
 - genre: Genre
 + getNom(): String
@@ -183,6 +201,7 @@ western.Substantif -- western.Genre
 
 
 Class western.test{
++ <<create>> test()
 
 }
 

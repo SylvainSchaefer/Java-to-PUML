@@ -27,6 +27,9 @@ public class ClassPUML extends GeneralClassUML
     {
         String res = "";
 
+        Constructor constructor = new Constructor(el);
+        res += constructor.getConstructors();
+
         for (Element enclosedElement : el.getEnclosedElements())
         {
             if (enclosedElement.getKind() == ElementKind.FIELD)
@@ -44,27 +47,6 @@ public class ClassPUML extends GeneralClassUML
         return res;
     }
 
-    public String getField()
-    {
-        String res = "";
-
-       for (Element e : this.el.getEnclosedElements())
-       {
-           if (isPrimitive(e)) //Verif Si argument
-           {
-               TypeMirror fieldType = e.asType();
-               if (fieldType.getKind().isPrimitive())//VefrifPrimitif
-               {
-                   Visibility v = new Visibility(e);
-                   Type type = new Type(e.asType());
-                   res += (v.getVisibility()+e.getSimpleName().toString()) + type.getType() + "\n";
-                   //res+= this.getVisibility(e)+(e.getSimpleName().toString())+ ": " + fieldType + "\n";
-               }
-           }
-
-       }
-       return res;
-    }
 
     public String getFieldDCA()
     {
@@ -133,40 +115,6 @@ public class ClassPUML extends GeneralClassUML
     public String getEnd()
     {
         return "}";
-    }
-
-
-
-
-
-
-
-    public String getMethode()
-    {
-        String res = "";
-        ExecutableElement xEl;
-
-        for (Element e : this.el.getEnclosedElements()) {
-            if (e.getKind() == ElementKind.METHOD)
-            {
-                Visibility v = new Visibility(e);
-                res += v.getVisibility();
-
-                xEl = (ExecutableElement) e;
-                Type type = new Type(xEl.asType());
-                Parameter parameter = new Parameter(xEl);
-                res += e.getSimpleName() + "("+ parameter.getParametersUML() + ")";
-
-                String returnType = e.asType().toString();
-                if (!returnType.toLowerCase().contains("void"))
-                {
-                    res += type.getType();
-                }
-                res += "\n";
-            }
-        }
-
-        return res;
     }
 
 

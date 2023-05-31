@@ -45,8 +45,8 @@ public class Constructor {
         String res = "";
 
         // Visibility modifier
-        Visibility v = new Visibility(constructorEl);
-        res += v.getVisibility() + "<<create>> ";
+        ModifierPUML m = new ModifierPUML(constructorEl);
+        res += m.getModifier() + "<<create>> ";
 
         // Nom du constructeur
 
