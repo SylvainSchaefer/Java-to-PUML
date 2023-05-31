@@ -46,7 +46,6 @@ Class western.Brigand{
 {static} + setBoissonParDefaut(boisson: Boisson)
 
 }
-western.Brigand - western.Dame
 western.Brigand -- western.Cowboy
 western.Brigand -- western.Boisson
 
@@ -82,7 +81,6 @@ Class western.Cowboy{
 {static} + setBoissonParDefaut(boisson: Boisson)
 
 }
-western.Cowboy - western.HorsLaLoi
 western.Cowboy -- western.Boisson
 
 western.Cowboy ---|> western.Personnage

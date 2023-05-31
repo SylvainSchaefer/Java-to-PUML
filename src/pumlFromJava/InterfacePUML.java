@@ -8,13 +8,13 @@ public class InterfacePUML extends GeneralClassUML
 
     public InterfacePUML(Element element)
     {
-        el = element;
+        super(element);
         //super(element);
     }
     @Override
     public String getNomClasse()
     {
-        return "Interface " + el.toString()+"<<interface>> {";
+        return "Interface " + getElement().toString()+"<<interface>> {";
     }
 
     @Override

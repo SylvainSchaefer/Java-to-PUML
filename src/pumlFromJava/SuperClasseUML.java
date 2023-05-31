@@ -48,14 +48,12 @@ public class SuperClasseUML
 
     }
 
-
     public boolean isInternal(TypeMirror element)
     {
         for (Element e : el.getEnclosingElement().getEnclosedElements())//Classe -> Package -> Elements du package
         {
             if(e.asType() == element)
             {
-
                 return true;
             }
         }

@@ -10,20 +10,21 @@ public class EnumPUML extends GeneralClassUML
 
     public EnumPUML(Element xel)
     {
-        el = xel;
+        super(xel);
+        //el = xel;
         //super(xel);
     }
     @Override
     public String getNomClasse()
     {
-        return "Enum " + el.toString()+"<<enum>> {";
+        return "Enum " + getElement().toString()+"<<enum>> {";
     }
 
     @Override
     public String getBody() {
         String res = "";
 
-        for (Element e : this.el.getEnclosedElements())
+        for (Element e : this.getElement().getEnclosedElements())
         {
             if (e.getKind() == ElementKind.ENUM_CONSTANT)
             {

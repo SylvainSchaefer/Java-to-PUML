@@ -9,28 +9,27 @@ import java.util.*;
 public class ClassPUML extends GeneralClassUML
 {
 
-    private Element el;
-
     public ClassPUML(Element xel)
     {
-        el = xel;
+        //el = xel;
+        super(xel);
         //super(xel);
     }
     @Override
     public String getNomClasse()
     {
         //if (this.el.getKind() == TypeElement.class)
-        return "Class " + this.el.toString()+"{";
+        return "Class " + getElement().toString()+"{";
     }
 
     public String getBody()
     {
         String res = "";
 
-        Constructor constructor = new Constructor(el);
+        Constructor constructor = new Constructor(getElement());
         res += constructor.getConstructors();
 
-        for (Element enclosedElement : el.getEnclosedElements())
+        for (Element enclosedElement : getElement().getEnclosedElements())
         {
             if (enclosedElement.getKind() == ElementKind.FIELD)
             {
@@ -52,7 +51,7 @@ public class ClassPUML extends GeneralClassUML
     {
         String res = "";
 
-        for (Element e : this.el.getEnclosedElements())
+        for (Element e : this.getElement().getEnclosedElements())
         {
             if (isPrimitive(e)) //Verif Si argument
             {
@@ -72,11 +71,11 @@ public class ClassPUML extends GeneralClassUML
     public String getAssociations()
     {
         String res = "";
-        for (Element e : this.el.getEnclosedElements())
+        for (Element e : this.getElement().getEnclosedElements())
         {
             if (e.getKind() == ElementKind.FIELD)
             {
-                if (!isPrimitive(e))
+                if (!isPrimitive(e) && isInternal(e.asType()))
                 {
                     TypeMirror fieldType = e.asType();
                     if (fieldType instanceof DeclaredType)
@@ -87,11 +86,11 @@ public class ClassPUML extends GeneralClassUML
                         {
                             TypeMirror typeArgument = typeArguments.get(0);
                             String className = typeArgument.toString();
-                            res += (el.toString() + " - " + className) + "\n";
+                            res += (getElement().toString() + " - " + className) + "\n";
                         }
                         else
                         {
-                            res += (el.toString() + " -- " + fieldType.toString()) + "\n";
+                            res += (getElement().toString() + " -- " + fieldType.toString()) + "\n";
                         }
                     }
                 }
