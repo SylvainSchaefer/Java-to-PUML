@@ -37,9 +37,6 @@ public class DCC implements DC{
 
                 uml += (c.getNomClasse())+ "\n";
                 uml += (c.getBody())+ "\n";
-                //writer.println(c.getField());
-                //writer.println(c.getConstructors());
-                //writer.println(c.getMethode());
                 uml += (c.getEnd()+ "\n");
                 uml += (c.getAssociations()+ "\n");
 
