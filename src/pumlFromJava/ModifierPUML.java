@@ -26,10 +26,10 @@ public class ModifierPUML
         {
             res+= "{read only} ";
         }
-        /*else if (modifier.contains("abstract"))
+        else if (modifier.contains("abstract"))
         {
             res+= "abstract ";
-        }*/
+        }
         if (modifier.contains("public"))
         {
             res+= "+ ";
