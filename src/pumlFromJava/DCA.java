@@ -18,7 +18,8 @@ public class DCA implements DC{
                 "skinparam style strictuml\n" +
                 "skinparam classAttributeIconSize 0\n" +
                 "skinparam classFontStyle Bold\n" +
-                "hide empty members\n");
+                "hide empty members\n"
+                + "'''DCA\n");
     }
 
     public static String getFin()
@@ -28,18 +29,15 @@ public class DCA implements DC{
 
     public String getUML()
     {
-        String uml = "'''DCA + \n";
+        String uml = "";
         for (Element e : classes) {
             if(e.getKind() == ElementKind.CLASS)
             {
                 ClassPUML c = new ClassPUML(e);
-
+                //SuperClasseUML sup = new SuperClasseUML(e);
 
                 uml += (c.getNomClasse())+ "\n";
-                uml += (c.getBody())+ "\n";
-                //writer.println(c.getField());
-                //writer.println(c.getConstructors());
-                //writer.println(c.getMethode());
+                uml += (c.getBodyDCA())+ "\n";
                 uml += (c.getEnd()+ "\n");
                 uml += (c.getAssociations()+ "\n");
 

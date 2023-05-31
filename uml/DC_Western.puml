@@ -6,35 +6,35 @@ skinparam classFontStyle Bold
 hide empty members
 
 Class TD6.Scenario3.Boisson{
-+ <<create>> Boisson(nom: String, genre: Genre)
-- nom: String
-- genre: Genre
-+ getNom(): String
-+ getGenre(): Genre
++ <<create>> Boisson(nom: String[*], genre: Genre[*])
+
+
++ getNom(): String[*]
++ getGenre(): Genre[*]
 
 }
 TD6.Scenario3.Boisson -- TD6.Scenario3.Genre
 
 
 Class TD6.Scenario3.Brigand{
-+ <<create>> Brigand(nom: String)
-+ <<create>> Brigand(nom: String, boisson: Boisson)
-+ <<create>> Brigand(nom: String, boisson: Boisson, look: String)
-- recompense: int
-- look: String
-- captureur: Cowboy
-- libre: Boolean
-- Dames: Dame[*]
-+ getLook(): String
-+ setLook(look: String)
-+ getPseudonyme(): String
-+ getStrRecompense(): String
-+ getRecompense(): int
-+ getDames(): Dame[*]
-+ kidnapper(dame: Dame)
-+ seFaireCapturer(cowboy: Cowboy)
-+ isLibre(): Boolean
-+ getCaptureur(): Cowboy
++ <<create>> Brigand(nom: String[*])
++ <<create>> Brigand(nom: String[*], boisson: Boisson[*])
++ <<create>> Brigand(nom: String[*], boisson: Boisson[*], look: String[*])
+- recompense: Integer
+
+
+
+
++ getLook(): String[*]
++ setLook(look: String[*])
++ getPseudonyme(): String[*]
++ getStrRecompense(): String[*]
++ getRecompense(): Integer
++ getDames(): List[*]
++ kidnapper(dame: Dame[*])
++ seFaireCapturer(cowboy: Cowboy[*])
++ isLibre(): Boolean[*]
++ getCaptureur(): Cowboy[*]
 + sePresenter()
 
 }
@@ -42,32 +42,32 @@ TD6.Scenario3.Brigand -- TD6.Scenario3.Cowboy
 
 TD6.Scenario3.Brigand ---|> TD6.Scenario3.Personnage
 Class TD6.Scenario3.Cowboy{
-+ <<create>> Cowboy(nom: String)
-+ <<create>> Cowboy(nom: String, boisson: Boisson)
-- somme: int
-- lstBrigand: HorsLaLoi[*]
-- damLibre: Dame[*]
-+ getPseudonyme(): String
-+ getDamLibre(): Dame[*]
-+ tirerSur(brigand: HorsLaLoi)
-+ capturer(horsLaLoi: HorsLaLoi)
-+ getSomme(): int
++ <<create>> Cowboy(nom: String[*])
++ <<create>> Cowboy(nom: String[*], boisson: Boisson[*])
+- somme: Integer
+
+
++ getPseudonyme(): String[*]
++ getDamLibre(): List[*]
++ tirerSur(brigand: HorsLaLoi[*])
++ capturer(horsLaLoi: HorsLaLoi[*])
++ getSomme(): Integer
 + sePresenter()
 
 }
 
 TD6.Scenario3.Cowboy ---|> TD6.Scenario3.Personnage
 Class TD6.Scenario3.Dame{
-+ <<create>> Dame(nom: String)
-- Libre: Boolean
-- sauveur: Cowboy
-- escroc: HorsLaLoi
-+ getPseudonyme(): String
-+ isLibre(): Boolean
-+ seFaireEnlever(horsLaLoi: HorsLaLoi)
-+ seFaireLiberer(cowboy: Cowboy)
-+ getSauveur(): Cowboy
-+ getEscroc(): HorsLaLoi
++ <<create>> Dame(nom: String[*])
+
+
+
++ getPseudonyme(): String[*]
++ isLibre(): Boolean[*]
++ seFaireEnlever(horsLaLoi: HorsLaLoi[*])
++ seFaireLiberer(cowboy: Cowboy[*])
++ getSauveur(): Cowboy[*]
++ getEscroc(): HorsLaLoi[*]
 + sePresenter()
 
 }
@@ -82,29 +82,29 @@ FEMININ
 }
 Class TD6.Scenario3.Histoire3{
 + <<create>> Histoire3()
-{static} + main(args: String[])
+{static} + main(args: void)
 
 }
 
 
 Class TD6.Scenario3.Histoire4{
 + <<create>> Histoire4()
-{static} + main(args: String[])
+{static} + main(args: void)
 
 }
 
 
 Interface TD6.Scenario3.HorsLaLoi<<interface>> {
-{abstract} + getPseudonyme(): String
-{abstract} + getLook(): String
-{abstract} + getDames(): Dame[*]
-{abstract} + kidnapper(dame: Dame)
-{abstract} + seFaireCapturer(cowboy: Cowboy)
-{abstract} + getRecompense(): int
-{abstract} + isLibre(): Boolean
-{abstract} + getCaptureur(): Cowboy
+{abstract} + getPseudonyme(): String[*]
+{abstract} + getLook(): String[*]
+{abstract} + getDames(): List[*]
+{abstract} + kidnapper(dame: Dame[*])
+{abstract} + seFaireCapturer(cowboy: Cowboy[*])
+{abstract} + getRecompense(): Integer
+{abstract} + isLibre(): Boolean[*]
+{abstract} + getCaptureur(): Cowboy[*]
 {abstract} + sePresenter()
-{abstract} + dire(phrase: String)
+{abstract} + dire(phrase: String[*])
 
 }
 
@@ -114,53 +114,53 @@ Interface TD6.Scenario3.ITest<<interface>> {
 TD6.Scenario3.ITest ---|> TD6.Scenario3.HorsLaLoi
 
 Class TD6.Scenario3.Narrateur{
-+ <<create>> Narrateur(nom: String)
-+ getPseudonyme(): String
-+ boire(boisson: Boisson)
++ <<create>> Narrateur(nom: String[*])
++ getPseudonyme(): String[*]
++ boire(boisson: Boisson[*])
 
 }
 
 TD6.Scenario3.Narrateur ---|> TD6.Scenario3.Personnage
 Class TD6.Scenario3.Personnage{
-+ <<create>> Personnage(nom: String, boisson: Boisson)
-+ <<create>> Personnage(nom: String)
-- nom: String
-- prefere: Boisson
-+ getNom(): String
-+ getPrefere(): Boisson
-+ setPrefere(prefere: Boisson)
++ <<create>> Personnage(nom: String[*], boisson: Boisson[*])
++ <<create>> Personnage(nom: String[*])
+
+
++ getNom(): String[*]
++ getPrefere(): Boisson[*]
++ setPrefere(prefere: Boisson[*])
 + sePresenter()
-+ boire(boisson: Boisson)
-+ dire(phrase: String)
++ boire(boisson: Boisson[*])
++ dire(phrase: String[*])
 + boire()
-{abstract} + getPseudonyme(): String
+{abstract} + getPseudonyme(): String[*]
 
 }
 TD6.Scenario3.Personnage -- TD6.Scenario3.Boisson
 
 
 Class TD6.Scenario3.Ripou{
-+ <<create>> Ripou(nom: String)
-+ <<create>> Ripou(nom: String, boisson: Boisson)
-+ <<create>> Ripou(nom: String, boisson: Boisson, look: String)
-- recompense: int
-- somme: int
-- lstBrigand: Brigand[*]
-- Dames: Dame[*]
-- look: String
-- captureur: Cowboy
-- libre: Boolean
-+ getPseudonyme(): String
-+ isLibre(): Boolean
-+ getLook(): String
-+ getRecompense(): int
-+ getStrRecompense(): String
-+ getDames(): Dame[*]
-+ kidnapper(dame: Dame)
-+ seFaireCapturer(cowboy: Cowboy)
-+ getCaptureur(): Cowboy
++ <<create>> Ripou(nom: String[*])
++ <<create>> Ripou(nom: String[*], boisson: Boisson[*])
++ <<create>> Ripou(nom: String[*], boisson: Boisson[*], look: String[*])
+- recompense: Integer
+- somme: Integer
+
+
+
+
+
++ getPseudonyme(): String[*]
++ isLibre(): Boolean[*]
++ getLook(): String[*]
++ getRecompense(): Integer
++ getStrRecompense(): String[*]
++ getDames(): List[*]
++ kidnapper(dame: Dame[*])
++ seFaireCapturer(cowboy: Cowboy[*])
++ getCaptureur(): Cowboy[*]
 + sePresenter()
-+ capturer(horsLaLoi: HorsLaLoi)
++ capturer(horsLaLoi: HorsLaLoi[*])
 
 }
 TD6.Scenario3.Ripou -- TD6.Scenario3.Cowboy

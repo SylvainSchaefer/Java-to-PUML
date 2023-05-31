@@ -3,6 +3,7 @@ package pumlFromJava;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 
 public class FieldUML
@@ -32,15 +33,29 @@ public class FieldUML
     {
         StringBuilder builder = new StringBuilder();
 
-        // Modifier
-        ModifierPUML modifierPUML = new ModifierPUML((Element) fieldElement);
-        builder.append(modifierPUML.getModifier());
+        if(fieldElement.asType().getKind() != TypeKind.DECLARED)
+        {
+            // Modifier
+            ModifierPUML modifierPUML = new ModifierPUML((Element) fieldElement);
+            builder.append(modifierPUML.getModifier());
+
+            // Nom du champ
+            builder.append(getName());
+
+            // Type du champ
+            builder.append(getType());
+        }
+
+
+        return builder.toString();
+    }
+
+
+    public String toStringDCA() {
+        StringBuilder builder = new StringBuilder();
 
         // Nom du champ
         builder.append(getName());
-
-        // Type du champ
-        builder.append(getType());
 
         return builder.toString();
     }

@@ -48,25 +48,24 @@ public class ClassPUML extends GeneralClassUML
     }
 
 
-    public String getFieldDCA()
+
+    public String getBodyDCA()
     {
         String res = "";
 
-        for (Element e : this.getElement().getEnclosedElements())
-        {
-            if (isPrimitive(e)) //Verif Si argument
-            {
-                TypeMirror fieldType = e.asType();
-                if (fieldType.getKind().isPrimitive())//VefrifPrimitif
-                {
-                    res += (e.getSimpleName().toString()) + "\n";
-                    //res+= this.getVisibility(e)+(e.getSimpleName().toString())+ ": " + fieldType + "\n";
-                }
-            }
 
+        for (Element enclosedElement : getElement().getEnclosedElements())
+        {
+            if (enclosedElement.getKind() == ElementKind.FIELD)
+            {
+                FieldUML field = new FieldUML(enclosedElement);
+                res += field.toStringDCA() + "\n";
+            }
         }
+
         return res;
     }
+
 
 
     public String getAssociations()
