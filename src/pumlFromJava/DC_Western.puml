@@ -136,25 +136,8 @@ western.Narrateur ---|> western.Personnage
 Interface western.Nommable<<interface>> {
 }
 Class western.Personnage{
-<<<<<<< HEAD
 + <<create>> Personnage(nom: String)
 + <<create>> Personnage(nom: String, boisson: Boisson)
-=======
-<<<<<<< HEAD
-[private, static] BOISSON_PAR_DEFAUT : western.Boisson
-[private] nom : java.lang.String
-
-
-[public] dire(texte: String)
-[public] sePresenter()
-[public] boire(boisson: Boisson)
-[public] boire()
-[public] getNom(): String
-[public] getBoisson(): Boisson
-static [public, static] getPseudos(personnages: Nommable[*]): String
-static [public, static] getBoissonParDefaut(): Boisson
-=======
->>>>>>> 55d0f13ffedd243979549cc2f811c6c8ee03d135
 {static} - BOISSON_PAR_DEFAUT: Boisson
 - nom: String
 - boisson: Boisson
@@ -166,7 +149,6 @@ static [public, static] getBoissonParDefaut(): Boisson
 + getBoisson(): Boisson
 {static} + getPseudos(personnages: Nommable[*]): String
 {static} + getBoissonParDefaut(): Boisson
->>>>>>> 910add04dbaa3b146f072b8d754e5b8033cc22cf
 
 }
 western.Personnage -- western.Boisson

@@ -28,11 +28,6 @@ public class FieldUML
         return type.getType();
     }
 
-    public boolean isPrimitive() {
-        TypeMirror fieldType = fieldElement.asType();
-        return fieldType.getKind().isPrimitive();
-    }
-
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

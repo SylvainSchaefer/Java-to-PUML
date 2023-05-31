@@ -28,7 +28,7 @@ public class ModifierPUML
         }
         else if (modifier.contains("abstract"))
         {
-            res+= "abstract ";
+            res+= "{abstract} ";
         }
         if (modifier.contains("public"))
         {
