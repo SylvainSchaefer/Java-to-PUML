@@ -91,6 +91,11 @@ public class Type {
                     {
                         res +=  ((DeclaredType)tListe).asElement().getSimpleName().toString() + "[*]";
                     }
+                    else if(tListe.getKind() == TypeKind.WILDCARD)
+                    {
+                        TypeMirror tListeWildCard = ((WildcardType)tListe).getExtendsBound();
+                        res += ((DeclaredType)tListeWildCard).asElement().getSimpleName().toString() + "[*]";
+                    }
                     else
                     {
                         res += tListe.toString() + "[*]";
