@@ -79,7 +79,24 @@ public class Type {
             case CHAR -> res += "String";
             //case UNION -> Type type = new Type(((UnionType)t).getAlternatives().get(0)).getSwitch();  res +=
             case DECLARED -> {
-                res += ((DeclaredType)t).asElement().getSimpleName().toString() + "[*]";
+                ClassPUML c = new ClassPUML(((DeclaredType)t).asElement());
+                if(c.isInternal(t))
+                {
+                    res += ((DeclaredType)t).asElement().getSimpleName().toString();
+                }
+                else
+                {
+                    TypeMirror tListe = ((DeclaredType) t).getTypeArguments().get(0);
+                    if(tListe.getKind() == TypeKind.DECLARED)
+                    {
+                        res +=  ((DeclaredType)tListe).asElement().getSimpleName().toString() + "[*]";
+                    }
+                    else
+                    {
+                        res += tListe.toString() + "[*]";
+                    }
+
+                }
             }
             default -> res += "void";
         }

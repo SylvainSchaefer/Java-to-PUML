@@ -1,0 +1,224 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+Class pumlFromJava.ClassPUML{
++ <<create>> ClassPUML(xel: Element[*])
++ getNomClasse(): String[*]
++ getBody(): String[*]
++ getBodyDCA(): String[*]
++ getAssociations(): String[*]
++ isPrimitive(e: Element[*]): Boolean
++ getSuperClassName(): String[*]
++ getEnd(): String[*]
+
+}
+
+pumlFromJava.ClassPUML ---|> pumlFromJava.GeneralClassUML
+Class pumlFromJava.Constructor{
++ <<create>> Constructor(xEl: Element[*])
+
+
+
++ getConstructors(): String[*]
++ getConstructorUML(): String[*]
+
+}
+pumlFromJava.Constructor o--- "constructors"java.lang.String
+
+
+Interface pumlFromJava.DC<<interface>> {
+{static} + getEn_tete(): String[*]
+{static} + getFin(): String[*]
+{abstract} + getUML(): String[*]
+
+}
+
+Class pumlFromJava.DCA{
++ <<create>> DCA(Xcl: ArrayList[*])
+
+{static} + getEn_tete(): String[*]
+{static} + getFin(): String[*]
++ getUML(): String[*]
+
+}
+pumlFromJava.DCA o--- "classes"javax.lang.model.element.Element
+
+
+Class pumlFromJava.DCC{
++ <<create>> DCC(Xcl: ArrayList[*])
+
+{static} + getEn_tete(): String[*]
+{static} + getFin(): String[*]
++ getUML(): String[*]
+
+}
+pumlFromJava.DCC o--- "classes"javax.lang.model.element.Element
+
+
+Class pumlFromJava.EnumPUML{
++ <<create>> EnumPUML(xel: Element[*])
+
++ getNomClasse(): String[*]
++ getBody(): String[*]
+
+}
+
+pumlFromJava.EnumPUML ---|> pumlFromJava.GeneralClassUML
+Class pumlFromJava.FieldUML{
++ <<create>> FieldUML(element: Element[*])
+
++ getName(): String[*]
++ getType(): String[*]
++ toString(): String[*]
++ toStringDCA(): String[*]
+
+}
+
+
+Class pumlFromJava.FirstDoclet{
++ <<create>> FirstDoclet()
++ init(locale: Locale[*], reporter: Reporter[*])
++ getName(): String[*]
++ getSupportedOptions(): Set[*]
++ getSupportedSourceVersion(): SourceVersion[*]
++ run(environment: DocletEnvironment[*]): Boolean
+- dumpElement(element: Element[*])
+
+}
+
+
+Class pumlFromJava.GeneralClassUML{
++ <<create>> GeneralClassUML(el: Element[*])
+
+{abstract} + getNomClasse(): String[*]
++ getEnd(): String[*]
++ isInternal(element: TypeMirror[*]): Boolean
+{abstract} + getBody(): String[*]
++ getElement(): Element[*]
+
+}
+
+
+Class pumlFromJava.InterfacePUML{
++ <<create>> InterfacePUML(element: Element[*])
+
++ getNomClasse(): String[*]
++ getBody(): String[*]
++ getSuperInterfacesName(): String[*]
+
+}
+
+pumlFromJava.InterfacePUML ---|> pumlFromJava.GeneralClassUML
+Class pumlFromJava.Java2Puml{
++ <<create>> Java2Puml()
+{static} + main(args: void)
+
+}
+
+
+Class pumlFromJava.MethodeUML{
++ <<create>> MethodeUML(element: Element[*])
+
++ getName(): String[*]
++ getReturnType(): String[*]
++ getParameters(): List[*]
++ isAbstract(): Boolean
++ isStatic(): Boolean
++ toString(): String[*]
+
+}
+
+
+Class pumlFromJava.ModifierPUML{
++ <<create>> ModifierPUML(xel: Element[*])
+
++ getModifier(): String[*]
+
+}
+
+
+Class pumlFromJava.OptionD{
++ <<create>> OptionD()
+
++ getArgumentCount(): Integer
++ getDescription(): String[*]
++ getKind(): Kind[*]
++ getNames(): List[*]
++ getParameters(): String[*]
++ process(option: String[*], arguments: List[*]): Boolean
++ getChemin(): String[*]
+
+}
+
+
+Class pumlFromJava.OptionDC{
++ <<create>> OptionDC()
+
++ getArgumentCount(): Integer
++ getDescription(): String[*]
++ getKind(): Kind[*]
++ getNames(): List[*]
++ getParameters(): String[*]
++ process(option: String[*], arguments: List[*]): Boolean
++ getTypeDC(): String[*]
++ isDCA(): Boolean
+
+}
+
+
+Class pumlFromJava.OptionOut{
++ <<create>> OptionOut()
+
++ getArgumentCount(): Integer
++ getDescription(): String[*]
++ getKind(): Kind[*]
++ getNames(): List[*]
++ getParameters(): String[*]
++ process(option: String[*], arguments: List[*]): Boolean
++ getNomFichier(): String[*]
+
+}
+
+
+Class pumlFromJava.Parameter{
++ <<create>> Parameter(xEl: ExecutableElement[*])
+
++ getParametersUML(): String[*]
+
+}
+
+
+Class pumlFromJava.PumlDoclet{
++ <<create>> PumlDoclet()
+
+
+
++ init(locale: Locale[*], reporter: Reporter[*])
++ getName(): String[*]
++ getSupportedOptions(): Set[*]
++ getSupportedSourceVersion(): SourceVersion[*]
++ run(environment: DocletEnvironment[*]): Boolean
+- creationUml(classes: ArrayList[*])
+
+}
+pumlFromJava.PumlDoclet o-- "optionOut"pumlFromJava.OptionOut
+pumlFromJava.PumlDoclet o-- "optionD"pumlFromJava.OptionD
+pumlFromJava.PumlDoclet o-- "optionDC"pumlFromJava.OptionDC
+
+
+Class pumlFromJava.Type{
++ <<create>> Type(xT: TypeMirror[*])
+
++ getType(): String[*]
++ getSwitch(): String[*]
+
+}
+
+
+
+@enduml
+
