@@ -30,7 +30,6 @@ Class pumlFromJava.Constructor{
 + getConstructorUML(): String
 
 }
-pumlFromJava.Constructor o--- "constructors"java.lang.String
 
 
 Interface pumlFromJava.DC<<interface>> {
@@ -48,7 +47,7 @@ Class pumlFromJava.DCA{
 + getUML(optionRel: OptionRel): String
 
 }
-pumlFromJava.DCA o--- "classes"javax.lang.model.element.Element
+pumlFromJava.DCA --> pumlFromJava.OptionRel: getUML
 
 
 Class pumlFromJava.DCC{
@@ -59,7 +58,7 @@ Class pumlFromJava.DCC{
 + getUML(optionRel: OptionRel): String
 
 }
-pumlFromJava.DCC o--- "classes"javax.lang.model.element.Element
+pumlFromJava.DCC --> pumlFromJava.OptionRel: getUML
 
 
 Class pumlFromJava.EnumPUML{

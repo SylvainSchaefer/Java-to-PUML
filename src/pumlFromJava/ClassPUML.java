@@ -87,8 +87,12 @@ public class ClassPUML extends GeneralClassUML
                         if (!typeArguments.isEmpty())
                         {
                             TypeMirror typeArgument = typeArguments.get(0);
-                            String className = typeArgument.toString();
-                            res += (getElement().toString() + " o--- " + '"' + fieldUML.getName() + '"' + className) + "\n";
+                            if(isInternal(typeArgument))
+                            {
+                                String className = typeArgument.toString();
+                                res += (getElement().toString() + " o--- " + '"' + fieldUML.getName() + '"' + className) + "\n";
+                            }
+
                         }
                         else if(isInternal(e.asType()))
                         {
@@ -122,8 +126,11 @@ public class ClassPUML extends GeneralClassUML
                         if (!typeArguments.isEmpty())
                         {
                             TypeMirror typeArgument = typeArguments.get(0);
-                            String className = typeArgument.toString();
-                            res += (getElement().toString() + " o--- " + '"' + fieldUML.getName() + '"' + className) + "\n";
+                            if(isInternal(typeArgument))
+                            {
+                                String className = typeArgument.toString();
+                                res += (getElement().toString() + " o--- " + '"' + fieldUML.getName() + '"' + className) + "\n";
+                            }
                         }
                         else if(isInternal(e.asType()))
                         {
@@ -168,6 +175,11 @@ public class ClassPUML extends GeneralClassUML
                         if (!typeArguments.isEmpty())
                         {
                             TypeMirror typeArgument = typeArguments.get(0);
+                            if(isInternal(typeArgument))
+                            {
+                                String className = typeArgument.toString();
+                                res += (getElement().toString() + " o--- " + '"' + fieldUML.getName() + '"' + className) + "\n";
+                            }
                             String className = typeArgument.toString();
                             res += (getElement().toString() + " --- " + '"' + fieldUML.getName() + '"' + className) + "\n";
                         }
@@ -202,6 +214,11 @@ public class ClassPUML extends GeneralClassUML
                         if (!typeArguments.isEmpty())
                         {
                             TypeMirror typeArgument = typeArguments.get(0);
+                            if(isInternal(typeArgument))
+                            {
+                                String className = typeArgument.toString();
+                                res += (getElement().toString() + " o--- " + '"' + fieldUML.getName() + '"' + className) + "\n";
+                            }
                             String className = typeArgument.toString();
                             res += (getElement().toString() + " --- " + '"' + fieldUML.getName() + '"' + className) + "\n";
                         }

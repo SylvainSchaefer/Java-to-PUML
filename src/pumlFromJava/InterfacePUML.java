@@ -50,12 +50,11 @@ public class InterfacePUML extends GeneralClassUML
         List<? extends TypeMirror> superInterfac = typeElement.getInterfaces();
 
 
-        for ( TypeMirror el : superInterfac)
+        for ( TypeMirror t : superInterfac)
         {
-            if(isInternal(el))
+            if(isInternal(t))
             {
-
-                res+= getElement().toString() +" ---|> "+el.toString()+"\n";
+                res+= getElement().toString() +" ---|> "+t.toString()+"\n";
             }
         }
 
