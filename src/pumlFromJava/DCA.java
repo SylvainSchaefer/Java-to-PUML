@@ -39,7 +39,7 @@ public class DCA implements DC{
                 uml += (c.getNomClasse())+ "\n";
                 uml += (c.getBodyDCA())+ "\n";
                 uml += (c.getEnd()+ "\n");
-                uml += (c.getAssociations()+ "\n");
+                uml += (c.getAssociationsDCA()+ "\n");
 
                 uml += (c.getSuperClassName()+ "\n");
 

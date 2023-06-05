@@ -97,6 +97,62 @@ public class ClassPUML extends GeneralClassUML
                     }
                 }
             }
+            else if(e.getKind() == ElementKind.METHOD)
+            {
+                ExecutableElement executableElement = (ExecutableElement)e;
+                for (VariableElement parameter: executableElement.getParameters()) {
+                    if(isInternal(parameter.asType()))
+                    {
+                        res += (getElement().toString() + " --> " + parameter.asType().toString()) + ": " + e.getSimpleName() + "\n";
+                    }
+                }
+            }
+        }
+        System.out.println(res);
+        return res;
+    }
+
+
+
+    public String getAssociationsDCA()
+    {
+        String res = "";
+        for (Element e : this.getElement().getEnclosedElements())
+        {
+            if (e.getKind() == ElementKind.FIELD)
+            {
+                if (!isPrimitive(e)) //&& isInternal(e.asType()))
+                {
+                    TypeMirror fieldType = e.asType();
+                    if (fieldType.getKind() == TypeKind.DECLARED)
+                    {
+                        DeclaredType declaredType = (DeclaredType) fieldType;
+                        List<? extends TypeMirror> typeArguments = declaredType.getTypeArguments();
+
+                        FieldUML fieldUML = new FieldUML(e);
+                        if (!typeArguments.isEmpty())
+                        {
+                            TypeMirror typeArgument = typeArguments.get(0);
+                            String className = typeArgument.toString();
+                            res += (getElement().toString() + " --- " + '"' + fieldUML.getName() + '"' + className) + "\n";
+                        }
+                        else if(isInternal(e.asType()))
+                        {
+                            res += (getElement().toString() + " -- " + '"' + fieldUML.getName() + '"' + fieldType.toString()) + "\n";
+                        }
+                    }
+                }
+            }
+            else if(e.getKind() == ElementKind.METHOD)
+            {
+                ExecutableElement executableElement = (ExecutableElement)e;
+                for (VariableElement parameter: executableElement.getParameters()) {
+                    if(isInternal(parameter.asType()))
+                    {
+                        res += (getElement().toString() + " ----- " + parameter.asType().toString()) + ": " + e.getSimpleName() + "\n";
+                    }
+                }
+            }
         }
         System.out.println(res);
         return res;

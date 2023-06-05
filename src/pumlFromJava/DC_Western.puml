@@ -47,7 +47,11 @@ Class western.Brigand{
 }
 western.Brigand o--- "captives"western.Dame
 western.Brigand o-- "gardien"western.Cowboy
+western.Brigand --> western.Dame: kidnapper
+western.Brigand --> western.Cowboy: seFaireCapturer
+western.Brigand --> western.Cowboy: seFaireTirerDessus
 western.Brigand o-- "boissonParDefaut"western.Boisson
+western.Brigand --> western.Boisson: setBoissonParDefaut
 
 western.Brigand ---|> western.Personnage
 Class western.CasDeTestStandard{
@@ -82,7 +86,11 @@ Class western.Cowboy{
 
 }
 western.Cowboy o--- "captures"western.HorsLaLoi
+western.Cowboy --> western.Dame: liberer
+western.Cowboy --> western.HorsLaLoi: capturer
+western.Cowboy --> western.HorsLaLoi: tirerSur
 western.Cowboy o-- "boissonParDefaut"western.Boisson
+western.Cowboy --> western.Boisson: setBoissonParDefaut
 
 western.Cowboy ---|> western.Personnage
 Class western.Dame{
@@ -104,7 +112,10 @@ Class western.Dame{
 }
 western.Dame o-- "sauveur"western.Cowboy
 western.Dame o-- "ravisseur"western.HorsLaLoi
+western.Dame --> western.HorsLaLoi: seFaireKidnapper
+western.Dame --> western.Cowboy: seFaireLiberer
 western.Dame o-- "boissonParDefaut"western.Boisson
+western.Dame --> western.Boisson: setBoissonParDefaut
 
 western.Dame ---|> western.Personnage
 Enum western.Genre<<enum>> {
@@ -140,6 +151,7 @@ Class western.Narrateur{
 + getPseudo(): String
 
 }
+western.Narrateur --> western.Boisson: boire
 
 western.Narrateur ---|> western.Personnage
 Interface western.Nommable<<interface>> {
@@ -160,12 +172,13 @@ Class western.Personnage{
 + boire()
 + getNom(): String
 + getBoisson(): Boisson
-{static} + getPseudos(personnages: ? extends western.Nommable[*]): String
+{static} + getPseudos(personnages: Nommable[*]): String
 {static} + getBoissonParDefaut(): Boisson
 
 }
 western.Personnage o-- "BOISSON_PAR_DEFAUT"western.Boisson
 western.Personnage o-- "boisson"western.Boisson
+western.Personnage --> western.Boisson: boire
 
 
 Class western.Ripou{
@@ -186,6 +199,10 @@ Class western.Ripou{
 
 }
 western.Ripou o-- "brigand"western.Brigand
+western.Ripou --> western.Dame: kidnapper
+western.Ripou --> western.Cowboy: seFaireCapturer
+western.Ripou --> western.Cowboy: seFaireTirerDessus
+western.Ripou --> western.Dame: liberer
 
 western.Ripou ---|> western.Cowboy
 Class western.Substantif{
@@ -211,6 +228,7 @@ Class western.Substantif{
 
 }
 western.Substantif o-- "genre"western.Genre
+western.Substantif --> western.Genre: getArticleDefini
 
 
 Class western.test{
