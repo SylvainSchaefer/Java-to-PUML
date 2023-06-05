@@ -238,6 +238,38 @@ Class pumlFromJava.Type{
 
 }
 
+Constructor <.... ClassPUML : <<use>>
+
+FieldUML <.... Type : <<use>>
+MethodeUML <.... Type : <<use>>
+Parameter <.... Type : <<use>>
+
+Parameter <.. Constructor : <<use>>
+ModifierPUML <.. Constructor : <<use>>
+
+FieldUML ..> ModifierPUML : <<use>>
+MethodeUML ..> ModifierPUML : <<use>>
+
+ClassPUML ..> MethodeUML : <<use>>
+
+InterfacePUML ..>MethodeUML : <<use>>
+
+DCA ..>InterfacePUML : <<use>>
+DCC ..>InterfacePUML : <<use>>
+DCA ..>EnumPUML : <<use>>
+DCC ..>EnumPUML : <<use>>
+DCA ..>ClassPUML : <<use>>
+DCC ..>ClassPUML : <<use>>
+
+Type ..>ClassPUML : <<use>>
+
+ClassPUML ..>FieldUML : <<use>>
+
+PumlDoclet ..>DCC : <<use>>
+PumlDoclet ..>DCA : <<use>>
+
+
+
 
 
 @enduml
