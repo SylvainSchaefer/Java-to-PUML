@@ -27,7 +27,7 @@ public class DCA implements DC{
         return ("@enduml\n");
     }
 
-    public String getUML()
+    public String getUML(OptionRel optionRel)
     {
         String uml = "";
         for (Element e : classes) {
@@ -39,7 +39,15 @@ public class DCA implements DC{
                 uml += (c.getNomClasse())+ "\n";
                 uml += (c.getBodyDCA())+ "\n";
                 uml += (c.getEnd()+ "\n");
-                uml += (c.getAssociationsDCA()+ "\n");
+                if(optionRel.isAll())
+                {
+                    uml += (c.getAssociationsDCA_AllRel()+ "\n");
+                }
+                else
+                {
+                    uml += (c.getAssociationsDCA()+ "\n");
+                }
+
 
                 uml += (c.getSuperClassName()+ "\n");
 

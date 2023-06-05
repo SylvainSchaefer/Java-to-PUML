@@ -16,6 +16,7 @@ public class PumlDoclet implements Doclet {
     private OptionOut optionOut = new OptionOut();
     private OptionD optionD = new OptionD();
     private OptionDC optionDC = new OptionDC();
+    private OptionRel optionRel = new OptionRel();
     @Override
     public void init(Locale locale, Reporter reporter) {  }
 
@@ -36,6 +37,7 @@ public class PumlDoclet implements Doclet {
         options.add(optionD);
         options.add(optionOut);
         options.add(optionDC);
+        options.add(optionRel);
         return options;
     }
 
@@ -97,7 +99,7 @@ public class PumlDoclet implements Doclet {
                 {
                     DCA dca = new DCA(classes);
                     writer.println(dca.getEn_tete());
-                    writer.println(dca.getUML());
+                    writer.println(dca.getUML(optionRel));
                     writer.println(dca.getFin());
                     //writer.close();
                 }
@@ -105,7 +107,7 @@ public class PumlDoclet implements Doclet {
                 {
                     DCC dcc = new DCC(classes);
                     writer.println(dcc.getEn_tete());
-                    writer.println(dcc.getUML());
+                    writer.println(dcc.getUML(optionRel));
                     writer.println(DCC.getFin());
                 }
             }
@@ -114,7 +116,7 @@ public class PumlDoclet implements Doclet {
             {
                 DCC dcc = new DCC(classes);
                 writer.println(dcc.getEn_tete());
-                writer.println(dcc.getUML());
+                writer.println(dcc.getUML(optionRel));
                 writer.println(DCC.getFin());
                 //writer.close();
             }

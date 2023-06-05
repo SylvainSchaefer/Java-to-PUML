@@ -14,5 +14,5 @@ public interface DC {
     {
         return ("@enduml\n");
     }
-    String getUML();
+    String getUML(OptionRel optionRel);
 }

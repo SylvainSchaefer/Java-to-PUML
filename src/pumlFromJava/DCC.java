@@ -26,7 +26,7 @@ public class DCC implements DC{
         return ("@enduml\n");
     }
 
-    public String getUML()
+    public String getUML(OptionRel optionRel)
     {
         String uml = "";
         for (Element e : classes) {
@@ -38,7 +38,14 @@ public class DCC implements DC{
                 uml += (c.getNomClasse())+ "\n";
                 uml += (c.getBody())+ "\n";
                 uml += (c.getEnd()+ "\n");
-                uml += (c.getAssociations()+ "\n");
+                if(optionRel.isAll())
+                {
+                    uml += (c.getAssociationsAllRel()+ "\n");
+                }
+                else
+                {
+                    uml += (c.getAssociations()+ "\n");
+                }
 
                 uml += (c.getSuperClassName()+ "\n");
 
@@ -63,4 +70,7 @@ public class DCC implements DC{
         }
         return uml;
     }
+
+
+
 }
