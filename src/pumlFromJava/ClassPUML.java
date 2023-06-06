@@ -71,6 +71,7 @@ public class ClassPUML extends GeneralClassUML
     public String getAssociations()
     {
         String res = "";
+
         for (Element e : this.getElement().getEnclosedElements())
         {
             if (e.getKind() == ElementKind.FIELD)
@@ -94,6 +95,7 @@ public class ClassPUML extends GeneralClassUML
                             }
 
                         }
+
                         else if(isInternal(e.asType()))
                         {
                             res += (getElement().toString() + " o-- " + '"' + fieldUML.getName() + '"' + fieldType.toString()) + "\n";
@@ -104,6 +106,23 @@ public class ClassPUML extends GeneralClassUML
         }
         System.out.println(res);
         return res;
+    }
+
+    public String getImplementations()
+    {
+        StringBuilder res = new StringBuilder();
+
+        TypeElement typeElement = (TypeElement) getElement();
+
+        List<? extends TypeMirror> interfaces = typeElement.getInterfaces();
+
+        for (TypeMirror interfaceType : interfaces) {
+            if (isInternal(interfaceType)) {
+                res.append(getElement().toString()).append(" ..|> ").append(interfaceType.toString()).append("\n");
+            }
+        }
+
+        return res.toString();
     }
 
 

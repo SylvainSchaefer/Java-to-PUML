@@ -36,8 +36,10 @@ public class DCC implements DC{
                 //SuperClasseUML sup = new SuperClasseUML(e);
 
                 uml += (c.getNomClasse())+ "\n";
+
                 uml += (c.getBody())+ "\n";
                 uml += (c.getEnd()+ "\n");
+                uml+=(c.getImplementations()+"\n");
                 if(optionRel.isAll())
                 {
                     uml += (c.getAssociationsAllRel()+ "\n");
