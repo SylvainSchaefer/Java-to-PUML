@@ -238,8 +238,8 @@ public class ClassPUML extends GeneralClassUML
                                 String className = typeArgument.toString();
                                 res += (getElement().toString() + " o--- " + '"' + fieldUML.getName() + '"' + className) + "\n";
                             }
-                            String className = typeArgument.toString();
-                            res += (getElement().toString() + " --- " + '"' + fieldUML.getName() + '"' + className) + "\n";
+                            //String className = typeArgument.toString();
+                            //res += (getElement().toString() + " --- " + '"' + fieldUML.getName() + '"' + className) + "\n";
                         }
                         else if(isInternal(e.asType()))
                         {

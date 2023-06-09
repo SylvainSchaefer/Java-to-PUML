@@ -13,6 +13,7 @@ Class TD6.Scenario3.Boisson{
 + getGenre(): Genre
 
 }
+
 TD6.Scenario3.Boisson o-- "genre"TD6.Scenario3.Genre
 
 
@@ -38,6 +39,8 @@ Class TD6.Scenario3.Brigand{
 + sePresenter()
 
 }
+TD6.Scenario3.Brigand ..|> TD6.Scenario3.HorsLaLoi
+
 TD6.Scenario3.Brigand o-- "captureur"TD6.Scenario3.Cowboy
 TD6.Scenario3.Brigand o--- "Dames"TD6.Scenario3.Dame
 TD6.Scenario3.Brigand --> TD6.Scenario3.Dame: kidnapper
@@ -58,6 +61,7 @@ Class TD6.Scenario3.Cowboy{
 + sePresenter()
 
 }
+
 TD6.Scenario3.Cowboy o--- "lstBrigand"TD6.Scenario3.HorsLaLoi
 TD6.Scenario3.Cowboy o--- "damLibre"TD6.Scenario3.Dame
 TD6.Scenario3.Cowboy --> TD6.Scenario3.HorsLaLoi: tirerSur
@@ -78,6 +82,7 @@ Class TD6.Scenario3.Dame{
 + sePresenter()
 
 }
+
 TD6.Scenario3.Dame o-- "sauveur"TD6.Scenario3.Cowboy
 TD6.Scenario3.Dame o-- "escroc"TD6.Scenario3.HorsLaLoi
 TD6.Scenario3.Dame --> TD6.Scenario3.HorsLaLoi: seFaireEnlever
@@ -96,11 +101,13 @@ Class TD6.Scenario3.Histoire3{
 }
 
 
+
 Class TD6.Scenario3.Histoire4{
 + <<create>> Histoire4()
 {static} + main(args: void)
 
 }
+
 
 
 Interface TD6.Scenario3.HorsLaLoi<<interface>> {
@@ -128,6 +135,7 @@ Class TD6.Scenario3.Narrateur{
 + boire(boisson: Boisson)
 
 }
+
 TD6.Scenario3.Narrateur --> TD6.Scenario3.Boisson: boire
 
 TD6.Scenario3.Narrateur ---|> TD6.Scenario3.Personnage
@@ -146,6 +154,7 @@ Class TD6.Scenario3.Personnage{
 {abstract} + getPseudonyme(): String
 
 }
+
 TD6.Scenario3.Personnage o-- "prefere"TD6.Scenario3.Boisson
 TD6.Scenario3.Personnage --> TD6.Scenario3.Boisson: setPrefere
 TD6.Scenario3.Personnage --> TD6.Scenario3.Boisson: boire
@@ -175,6 +184,8 @@ Class TD6.Scenario3.Ripou{
 + capturer(horsLaLoi: HorsLaLoi)
 
 }
+TD6.Scenario3.Ripou ..|> TD6.Scenario3.HorsLaLoi
+
 TD6.Scenario3.Ripou o--- "lstBrigand"TD6.Scenario3.Brigand
 TD6.Scenario3.Ripou o--- "Dames"TD6.Scenario3.Dame
 TD6.Scenario3.Ripou o-- "captureur"TD6.Scenario3.Cowboy
