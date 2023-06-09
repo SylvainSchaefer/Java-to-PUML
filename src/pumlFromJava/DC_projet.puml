@@ -11,6 +11,7 @@ Class pumlFromJava.ClassPUML{
 + getBody(): String
 + getBodyDCA(): String
 + getAssociations(): String
++ getImplementations(): String
 + getAssociationsAllRel(): String
 + getAssociationsDCA(): String
 + getAssociationsDCA_AllRel(): String
@@ -19,6 +20,7 @@ Class pumlFromJava.ClassPUML{
 + getEnd(): String
 
 }
+
 
 pumlFromJava.ClassPUML ---|> pumlFromJava.GeneralClassUML
 Class pumlFromJava.Constructor{
@@ -30,6 +32,7 @@ Class pumlFromJava.Constructor{
 + getConstructorUML(): String
 
 }
+
 
 
 Interface pumlFromJava.DC<<interface>> {
@@ -47,7 +50,8 @@ Class pumlFromJava.DCA{
 + getUML(optionRel: OptionRel): String
 
 }
-pumlFromJava.DCA --> pumlFromJava.OptionRel: getUML
+pumlFromJava.DCA ..|> pumlFromJava.DC
+
 
 
 Class pumlFromJava.DCC{
@@ -58,7 +62,8 @@ Class pumlFromJava.DCC{
 + getUML(optionRel: OptionRel): String
 
 }
-pumlFromJava.DCC --> pumlFromJava.OptionRel: getUML
+pumlFromJava.DCC ..|> pumlFromJava.DC
+
 
 
 Class pumlFromJava.EnumPUML{
@@ -68,6 +73,7 @@ Class pumlFromJava.EnumPUML{
 + getBody(): String
 
 }
+
 
 pumlFromJava.EnumPUML ---|> pumlFromJava.GeneralClassUML
 Class pumlFromJava.FieldUML{
@@ -79,6 +85,7 @@ Class pumlFromJava.FieldUML{
 + toStringDCA(): String
 
 }
+
 
 
 Class pumlFromJava.FirstDoclet{
@@ -93,6 +100,7 @@ Class pumlFromJava.FirstDoclet{
 }
 
 
+
 Class pumlFromJava.GeneralClassUML{
 + <<create>> GeneralClassUML(el: Element)
 
@@ -105,6 +113,7 @@ Class pumlFromJava.GeneralClassUML{
 }
 
 
+
 Class pumlFromJava.InterfacePUML{
 + <<create>> InterfacePUML(element: Element)
 
@@ -114,12 +123,14 @@ Class pumlFromJava.InterfacePUML{
 
 }
 
+
 pumlFromJava.InterfacePUML ---|> pumlFromJava.GeneralClassUML
 Class pumlFromJava.Java2Puml{
 + <<create>> Java2Puml()
 {static} + main(args: void)
 
 }
+
 
 
 Class pumlFromJava.MethodeUML{
@@ -135,12 +146,14 @@ Class pumlFromJava.MethodeUML{
 }
 
 
+
 Class pumlFromJava.ModifierPUML{
 + <<create>> ModifierPUML(xel: Element)
 
 + getModifier(): String
 
 }
+
 
 
 Class pumlFromJava.OptionD{
@@ -155,6 +168,7 @@ Class pumlFromJava.OptionD{
 + getChemin(): String
 
 }
+
 
 
 Class pumlFromJava.OptionDC{
@@ -172,6 +186,7 @@ Class pumlFromJava.OptionDC{
 }
 
 
+
 Class pumlFromJava.OptionOut{
 + <<create>> OptionOut()
 
@@ -184,6 +199,7 @@ Class pumlFromJava.OptionOut{
 + getNomFichier(): String
 
 }
+
 
 
 Class pumlFromJava.OptionRel{
@@ -201,12 +217,14 @@ Class pumlFromJava.OptionRel{
 }
 
 
+
 Class pumlFromJava.Parameter{
 + <<create>> Parameter(xEl: ExecutableElement)
 
 + getParametersUML(): String
 
 }
+
 
 
 Class pumlFromJava.PumlDoclet{
@@ -223,6 +241,7 @@ Class pumlFromJava.PumlDoclet{
 - creationUml(classes: Element[*])
 
 }
+
 pumlFromJava.PumlDoclet o-- "optionOut"pumlFromJava.OptionOut
 pumlFromJava.PumlDoclet o-- "optionD"pumlFromJava.OptionD
 pumlFromJava.PumlDoclet o-- "optionDC"pumlFromJava.OptionDC
@@ -236,37 +255,6 @@ Class pumlFromJava.Type{
 + getSwitch(): String
 
 }
-
-Constructor <.... ClassPUML : <<use>>
-
-FieldUML <.... Type : <<use>>
-MethodeUML <.... Type : <<use>>
-Parameter <.... Type : <<use>>
-
-Parameter <.. Constructor : <<use>>
-ModifierPUML <.. Constructor : <<use>>
-
-FieldUML ..> ModifierPUML : <<use>>
-MethodeUML ..> ModifierPUML : <<use>>
-
-ClassPUML ..> MethodeUML : <<use>>
-
-InterfacePUML ..>MethodeUML : <<use>>
-
-DCA ..>InterfacePUML : <<use>>
-DCC ..>InterfacePUML : <<use>>
-DCA ..>EnumPUML : <<use>>
-DCC ..>EnumPUML : <<use>>
-DCA ..>ClassPUML : <<use>>
-DCC ..>ClassPUML : <<use>>
-
-Type ..>ClassPUML : <<use>>
-
-ClassPUML ..>FieldUML : <<use>>
-
-PumlDoclet ..>DCC : <<use>>
-PumlDoclet ..>DCA : <<use>>
-
 
 
 
