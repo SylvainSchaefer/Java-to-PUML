@@ -36,6 +36,21 @@ C:\Users\sylva\Documents\Cours\IUT\P21\p21_projet\src\pumlFromJava
 -dc
 C
      */
+
+    /*    -private
+-sourcepath
+src\
+-doclet
+pumlFromJava.PumlDoclet
+-docletpath
+out/production/p21_projet
+Test
+-out
+DC_test
+-d
+C:\Users\sylva\Documents\Cours\IUT\P21\p21_projet\src\pumlFromJava
+-dc
+C*/
     public static void main(String[] args)
     {
         ToolProvider toolProvider = ToolProvider.findFirst("javadoc").get();
