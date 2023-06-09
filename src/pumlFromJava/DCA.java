@@ -35,7 +35,7 @@ public class DCA implements DC{
             {
                 ClassPUML c = new ClassPUML(e);
                 //SuperClasseUML sup = new SuperClasseUML(e);
-
+                uml+=(c.getImplementations())+ "\n";
                 uml += (c.getNomClasse())+ "\n";
                 uml += (c.getBodyDCA())+ "\n";
                 uml += (c.getEnd()+ "\n");
